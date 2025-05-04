@@ -43,7 +43,16 @@ def process_all_disasters():
     # 1) Building data (with integer jumlah_lantai)
     bld = get_bangunan_data()
     logger.debug(f"📥 Buildings: {len(bld)} rows")
+    # Derive kode_bangunan if missing
+    if 'kode_bangunan' not in bld.columns or bld['kode_bangunan'].isna().all():
+        bld['kode_bangunan'] = (
+            bld['id_bangunan'].astype(str)
+               .str.split('_').str[0]
+               .str.lower()
+        )
+        logger.debug("🔧 Derived kode_bangunan from id_bangunan")
     bld["jumlah_lantai"] = bld["jumlah_lantai"].fillna(0).astype(int)
+    # Correct numpy conversion without indexing
     luas  = bld["luas"].fillna(0).to_numpy()
     hsbgn = bld["hsbgn"].fillna(0).to_numpy()
 
@@ -105,8 +114,10 @@ def process_all_disasters():
 
     # 5) Dump CSV & 6) AAL
     csv_path = os.path.join(DEBUG_DIR, "directloss_all.csv")
-    bld.to_csv(csv_path, index=False, sep=';')
-    logger.debug(f"📄 CSV DirectLoss: {csv_path}")
+    cols_to_dump = ["provinsi", "kode_bangunan"] + dl_cols
+    bld.to_csv(csv_path, index=False, sep=';', columns=cols_to_dump)
+    logger.debug(f"📄 CSV DirectLoss subset for AAL: {csv_path}")
+
     calculate_aal()
     logger.debug("=== END process_all_disasters ===")
     return csv_path
@@ -126,32 +137,40 @@ def calculate_aal():
       "longsor_5":0.02,"longsor_2":0.04
     }
 
-    if "provinsi" not in df or "kode_bangunan" not in df:
-        logger.warning("⚠️ Missing provinsi/kode_bangunan")
+    # Verifikasi kolom presence
+    if "provinsi" not in df.columns or "kode_bangunan" not in df.columns:
+        logger.warning("⚠️ Missing kolom 'provinsi' atau 'kode_bangunan' di CSV")
         return
 
-    grp = df.groupby(["provinsi","kode_bangunan"]).sum()
+    # Group per provinsi & kode_bangunan
+    dl_cols = [c for c in df.columns if c.startswith("direct_loss_")]
+    grp = df.groupby(["provinsi", "kode_bangunan"]).sum()[dl_cols]
+    logger.debug(f"grp (provinsi,kode_bangunan) shape: {grp.shape}")
+
+    # Hitung AAL per grup
     aal = pd.DataFrame(index=grp.index)
     for key, p in periods.items():
         dis, sc = key.split("_")
         dlc = f"direct_loss_{dis}_{sc}"
-        aalc= f"aal_{dis}_{sc}"
-        if dlc in grp:
-            aal[aalc] = grp[dlc] * (-np.log(1-p))
+        aalc = f"aal_{dis}_{sc}"
+        aal[aalc] = grp[dlc] * (-np.log(1-p))
+    aal = aal.reset_index()
+    logger.debug(f"AAL before pivot: {aal.shape}, cols: {aal.columns.tolist()}")
 
-    aal.reset_index(inplace=True)
-    pivot = aal.pivot(index="provinsi", columns="kode_bangunan")
-    pivot.columns = [f"{d}_{b.lower()}" for d,b in pivot.columns]
+    # Pivot per kode_bangunan (tipe bangunan)
+    pivot = aal.pivot(index='provinsi', columns='kode_bangunan')
+    pivot.columns = [f"{col[0]}_{col[1].lower()}" for col in pivot.columns]
     pivot.reset_index(inplace=True)
+    logger.debug(f"pivot shape: {pivot.shape}, cols: {pivot.columns.tolist()}")
 
-    # total per scale
-    for key in periods:
-        dis, sc = key.split("_")
-        cols = [f"aal_{dis}_{sc}_bmn",f"aal_{dis}_{sc}_fs",f"aal_{dis}_{sc}_fd"]
-        exist = [c for c in cols if c in pivot]
-        if exist:
-            pivot[f"aal_{dis}_{sc}_total"] = pivot[exist].sum(axis=1)
+    # Tambah kolom total per scale
+    for key in periods.keys():
+        pattern = f"aal_{key}_"
+        cols = [c for c in pivot.columns if c.startswith(pattern)]
+        pivot[f"{key}_total"] = pivot[cols].sum(axis=1)
+    logger.debug(f"pivot with totals shape: {pivot.shape}")
 
+    # Baris Total Keseluruhan
     totals = pivot.select_dtypes(include=[np.number]).sum().to_dict()
     totals["provinsi"] = "Total Keseluruhan"
     final = pd.concat([pivot, pd.DataFrame([totals])], ignore_index=True)
@@ -160,6 +179,7 @@ def calculate_aal():
     final.to_csv(out, index=False, sep=';')
     logger.debug(f"📄 CSV AAL: {out}")
 
+    # Simpan ke DB
     try:
         db.session.query(HasilAALProvinsi).delete()
         mappings = final.to_dict(orient='records')

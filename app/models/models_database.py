@@ -175,6 +175,7 @@ class Bangunan(db.Model):
     provinsi = db.Column(db.String(255), nullable=False, unique=True)
     geom = db.Column(Geometry('POINT', srid=4326), nullable=False)
     jumlah_lantai = db.Column(db.Integer)
+    kode_bangunan = db.Column(db.String(255))
     
 
     def to_dict(self):

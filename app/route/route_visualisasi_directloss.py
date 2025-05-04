@@ -1,94 +1,133 @@
-# app/route/route_visualisasi_directloss.py
-
-from flask import Blueprint, request, jsonify
-from app.service.service_visualisasi_directloss import GedungService
+import io
 import math
+from flask import Blueprint, request, Response, jsonify
+from app.service.service_visualisasi_directloss import GedungService
 
 gedung_bp = Blueprint('gedung', __name__, url_prefix='/api')
 
+# — GeoJSON endpoints (lama) —
 @gedung_bp.route('/gedung', methods=['GET'])
 def get_gedung():
-    """
-    GET /api/gedung
-      Query params (optional):
-        - bbox=minx,miny,maxx,maxy
-        - provinsi=<nama provinsi>
-        - kota=<nama kota>
-    Returns a GeoJSON FeatureCollection.
-    """
-    bbox    = request.args.get('bbox')
-    prov    = request.args.get('provinsi')
-    kota    = request.args.get('kota')
-    geojson = GedungService.get_geojson(bbox=bbox, prov=prov, kota=kota)
+    bbox = request.args.get('bbox')
+    prov = request.args.get('provinsi')
+    kota = request.args.get('kota')
+    geojson = GedungService.get_geojson(bbox, prov, kota)
     return jsonify(geojson)
 
 @gedung_bp.route('/provinsi', methods=['GET'])
 def list_provinsi():
-    """
-    GET /api/provinsi
-    Returns JSON array of all distinct provinsi.
-    """
-    data = GedungService.get_provinsi_list()
-    return jsonify(data)
+    return jsonify(GedungService.get_provinsi_list())
 
 @gedung_bp.route('/kota', methods=['GET'])
 def list_kota():
-    """
-    GET /api/kota?provinsi=<nama provinsi>
-    Returns JSON array of all distinct kota in the given provinsi.
-    """
     prov = request.args.get('provinsi')
     if not prov:
         return jsonify([]), 400
-    data = GedungService.get_kota_list(prov)
-    return jsonify(data)
+    return jsonify(GedungService.get_kota_list(prov))
 
 @gedung_bp.route('/aal-provinsi', methods=['GET'])
 def get_aal_geojson():
-    """
-    GET /api/aal-provinsi
-      Query params (optional):
-        - provinsi=<nama provinsi>
-    Returns GeoJSON FeatureCollection dari AAL per provinsi.
-    """
     prov = request.args.get('provinsi')
     geojson = GedungService.get_aal_geojson(prov)
     return jsonify(geojson)
 
 @gedung_bp.route('/aal-provinsi-list', methods=['GET'])
 def list_aal_provinsi():
-    """
-    GET /api/aal-provinsi-list
-    Mengembalikan JSON array nama-nama provinsi dari hasil_aal_provinsi.
-    """
-    data = GedungService.get_aal_provinsi_list()
-    return jsonify(data)
+    return jsonify(GedungService.get_aal_provinsi_list())
 
 @gedung_bp.route('/aal-provinsi-data', methods=['GET'])
 def aal_data():
-    """
-    GET /api/aal-provinsi-data?provinsi=...
-    Returns JSON object of all AAL fields (sanitized) for the given provinsi.
-    """
     prov = request.args.get('provinsi')
     if not prov:
         return jsonify({"error": "provinsi required"}), 400
-
     data = GedungService.get_aal_data(prov)
     if not data:
         return jsonify({}), 404
-
-    # sanitize NaN or infinite values
-    for key, value in data.items():
-        if isinstance(value, float) and (math.isnan(value) or math.isinf(value)):
-            data[key] = 0.0
-
+    # sanitize NaN / Inf
+    for k, v in data.items():
+        if isinstance(v, float) and (math.isnan(v) or math.isinf(v)):
+            data[k] = 0.0
     return jsonify(data)
+
+# — CSV download endpoints (tanpa filter) —
+@gedung_bp.route('/gedung/download', methods=['GET'])
+def download_directloss():
+    """
+    Stream CSV seluruh tabel hasil_proses_directloss + bangunan tanpa filter.
+    Termasuk kolom nama_gedung dan alamat dari tabel bangunan.
+    """
+    # Ambil cursor psycopg2
+    from app.extensions import db
+    raw_conn = db.session.connection().connection
+    cur = raw_conn.cursor()
+
+    # Sertakan nama_gedung dan alamat
+    copy_sql = """
+    COPY (
+      SELECT
+        b.id_bangunan,
+        b.nama_gedung,
+        b.alamat,
+        b.kota,
+        b.provinsi,
+        b.luas,
+        b.taxonomy,
+        b.jumlah_lantai,
+        d.*
+      FROM bangunan b
+      JOIN hasil_proses_directloss d USING (id_bangunan)
+    ) TO STDOUT WITH CSV HEADER
+    """
+
+    def generate():
+        buf = io.StringIO()
+        cur.copy_expert(copy_sql, buf)
+        buf.seek(0)
+        while True:
+            chunk = buf.read(8192)
+            if not chunk:
+                break
+            yield chunk
+
+    return Response(
+        generate(),
+        mimetype='text/csv',
+        headers={'Content-Disposition': 'attachment; filename=directloss.csv'}
+    )
+
+@gedung_bp.route('/aal-provinsi/download', methods=['GET'])
+def download_aal():
+    """
+    Stream CSV seluruh tabel hasil_aal_provinsi tanpa filter.
+    """
+    from app.extensions import db
+    raw_conn = db.session.connection().connection
+    cur = raw_conn.cursor()
+
+    copy_sql = """
+    COPY (
+      SELECT *
+      FROM hasil_aal_provinsi
+      ORDER BY provinsi
+    ) TO STDOUT WITH CSV HEADER
+    """
+
+    def generate():
+        buf = io.StringIO()
+        cur.copy_expert(copy_sql, buf)
+        buf.seek(0)
+        while True:
+            chunk = buf.read(8192)
+            if not chunk:
+                break
+            yield chunk
+
+    return Response(
+        generate(),
+        mimetype='text/csv',
+        headers={'Content-Disposition': 'attachment; filename=aal_provinsi.csv'}
+    )
 
 
 def setup_visualisasi_routes(app):
-    """
-    Register this blueprint on the Flask application.
-    Call this in create_app() after other blueprint registrations.
-    """
     app.register_blueprint(gedung_bp)

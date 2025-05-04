@@ -15,8 +15,9 @@ def get_db_connection():
     except Exception as e:
         raise ConnectionError(f"❌ Gagal terhubung ke database: {e}")
 
+
 def get_bangunan_data():
-    """Mengambil data Bangunan lengkap dengan geom, jumlah_lantai (integer), hsbgn & provinsi."""
+    """Mengambil data Bangunan lengkap dengan geom, jumlah_lantai (integer), provinsi, hsbgn, dan atribut lain."""
     query = text("""
         SELECT
             b.id_bangunan,
@@ -25,9 +26,9 @@ def get_bangunan_data():
             b.nama_gedung,
             b.alamat,
             b.kode_bangunan,
+            b.provinsi,
             b.kota,
-            b.jumlah_lantai,           -- langsung ambil integer
-            k.provinsi,
+            b.jumlah_lantai,
             COALESCE(k.hsbgn, 0.0) AS hsbgn
         FROM bangunan b
         LEFT JOIN kota k
@@ -42,6 +43,7 @@ def get_bangunan_data():
             return df
     except Exception as e:
         raise RuntimeError(f"❌ Kesalahan mengambil data bangunan: {e}")
+
 
 def get_all_disaster_data():
     """
@@ -126,7 +128,8 @@ def get_all_disaster_data():
                 ) AS near ON TRUE
                 JOIN {dmgr_table} h
                   ON h.id_lokasi = near.id_lokasi;
-            """)
+            """
+            )
             df = pd.read_sql(query, conn)
             df.to_csv(os.path.join(DEBUG_DIR, f"debug_postgres_{name}.csv"),
                       index=False, sep=';')
