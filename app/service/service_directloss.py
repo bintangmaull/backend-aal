@@ -51,14 +51,20 @@ def process_all_disasters():
                .str.lower()
         )
         logger.debug("🔧 Derived kode_bangunan from id_bangunan")
-    bld["jumlah_lantai"] = bld["jumlah_lantai"].fillna(0).astype(int)
-    # Correct numpy conversion without indexing
-    luas  = bld["luas"].fillna(0).to_numpy()
-    hsbgn = bld["hsbgn"].fillna(0).to_numpy()
+    # Fill NaN in building data
+    bld['jumlah_lantai'] = bld['jumlah_lantai'].fillna(0).astype(int)
+    bld['luas'] = bld['luas'].fillna(0)
+    bld['hsbgn'] = bld['hsbgn'].fillna(0)
+
+    # Convert to numpy arrays
+    luas  = bld['luas'].to_numpy()
+    hsbgn = bld['hsbgn'].to_numpy()
 
     # 2) Hazard data
     disaster_data = get_all_disaster_data()
     for name, df in disaster_data.items():
+        # Fill NaN in hazard frames
+        disaster_data[name] = df.fillna(0)
         logger.debug(f"📥 {name}: {len(df)} rows")
 
     # 3) Direct loss calc
@@ -71,19 +77,16 @@ def process_all_disasters():
     }
 
     for name, df_raw in disaster_data.items():
-        if df_raw.empty:
-            continue
-
         pre    = prefix_map[name]
         scales = scales_map[name]
-
         if name == "banjir":
-            floors = np.clip(bld["jumlah_lantai"].to_numpy(), 1, 2)
+            floors = np.clip(bld['jumlah_lantai'].to_numpy(), 1, 2)
             for s in scales:
-                y1 = df_raw[f"nilai_y_1_{pre}{s}"].fillna(0).to_numpy()
-                y2 = df_raw[f"nilai_y_2_{pre}{s}"].fillna(0).to_numpy()
+                y1 = df_raw[f"nilai_y_1_{pre}{s}"].to_numpy()
+                y2 = df_raw[f"nilai_y_2_{pre}{s}"].to_numpy()
                 v = np.where(floors == 1, y1, y2)
                 bld[f"direct_loss_{name}_{s}"] = luas * hsbgn * v
+                bld[f"direct_loss_{name}_{s}"] = bld[f"direct_loss_{name}_{s}"].fillna(0)
                 logger.debug(f"direct_loss_banjir_{s} sample: {bld[f'direct_loss_{name}_{s}'].head(3).tolist()}")
         else:
             for s in scales:
@@ -93,14 +96,15 @@ def process_all_disasters():
                     f"nilai_y_mur_{pre}{s}",
                     f"nilai_y_lightwood_{pre}{s}"
                 ]
-                maxv = df_raw[ycols].fillna(0).to_numpy().max(axis=1)
+                maxv = df_raw[ycols].to_numpy().max(axis=1)
                 bld[f"direct_loss_{name}_{s}"] = luas * hsbgn * maxv
+                bld[f"direct_loss_{name}_{s}"] = bld[f"direct_loss_{name}_{s}"].fillna(0)
                 logger.debug(f"direct_loss_{name}_{s} sample: {bld[f'direct_loss_{name}_{s}'].head(3).tolist()}")
 
     # 4) Save Direct Loss
     dl_cols = [c for c in bld.columns if c.startswith("direct_loss_")]
     mappings = [
-        {"id_bangunan": row["id_bangunan"], **{c: row[c] for c in dl_cols}}
+        {"id_bangunan": row['id_bangunan'], **{c: row[c] for c in dl_cols}}
         for _, row in bld.iterrows()
     ]
     try:
@@ -129,7 +133,11 @@ def calculate_aal():
         logger.error("❌ directloss_all.csv not found")
         return
 
+    # 1) Baca CSV dan fill NaN
     df = pd.read_csv(path, delimiter=';')
+    df = df.fillna(0)
+
+    # 2) Definisi period untuk AAL
     periods = {
       "gempa_500":0.02, "gempa_250":0.04, "gempa_100":0.10,
       "banjir_100":0.05,"banjir_50":0.10,"banjir_25":0.20,
@@ -137,49 +145,48 @@ def calculate_aal():
       "longsor_5":0.02,"longsor_2":0.04
     }
 
-    # Verifikasi kolom presence
-    if "provinsi" not in df.columns or "kode_bangunan" not in df.columns:
-        logger.warning("⚠️ Missing kolom 'provinsi' atau 'kode_bangunan' di CSV")
-        return
-
-    # Group per provinsi & kode_bangunan
+    # 3) Group per provinsi & kode_bangunan
     dl_cols = [c for c in df.columns if c.startswith("direct_loss_")]
     grp = df.groupby(["provinsi", "kode_bangunan"]).sum()[dl_cols]
     logger.debug(f"grp (provinsi,kode_bangunan) shape: {grp.shape}")
 
-    # Hitung AAL per grup
+    # 4) Hitung AAL per group
     aal = pd.DataFrame(index=grp.index)
     for key, p in periods.items():
         dis, sc = key.split("_")
         dlc = f"direct_loss_{dis}_{sc}"
         aalc = f"aal_{dis}_{sc}"
         aal[aalc] = grp[dlc] * (-np.log(1-p))
-    aal = aal.reset_index()
+    aal.reset_index(inplace=True)
+    aal = aal.fillna(0)
     logger.debug(f"AAL before pivot: {aal.shape}, cols: {aal.columns.tolist()}")
 
-    # Pivot per kode_bangunan (tipe bangunan)
+    # 5) Pivot per kode_bangunan
     pivot = aal.pivot(index='provinsi', columns='kode_bangunan')
     pivot.columns = [f"{col[0]}_{col[1].lower()}" for col in pivot.columns]
     pivot.reset_index(inplace=True)
+    pivot = pivot.fillna(0)
     logger.debug(f"pivot shape: {pivot.shape}, cols: {pivot.columns.tolist()}")
 
-    # Tambah kolom total per scale
+    # 6) Tambah kolom total per scale across types (bmn, fs, fd)
     for key in periods.keys():
         pattern = f"aal_{key}_"
-        cols = [c for c in pivot.columns if c.startswith(pattern)]
-        pivot[f"{key}_total"] = pivot[cols].sum(axis=1)
+        cols = [c for c in pivot.columns if c.startswith(pattern) and not c.endswith("_total")]
+        pivot[f"{pattern}total"] = pivot[cols].sum(axis=1)
+    pivot = pivot.fillna(0)
     logger.debug(f"pivot with totals shape: {pivot.shape}")
 
-    # Baris Total Keseluruhan
+    # 7) Baris Total Keseluruhan
     totals = pivot.select_dtypes(include=[np.number]).sum().to_dict()
     totals["provinsi"] = "Total Keseluruhan"
     final = pd.concat([pivot, pd.DataFrame([totals])], ignore_index=True)
+    final = final.fillna(0)
 
+    # 8) Simpan CSV dan DB
     out = os.path.join(DEBUG_DIR, "AAL_per_provinsi_filtered.csv")
     final.to_csv(out, index=False, sep=';')
     logger.debug(f"📄 CSV AAL: {out}")
 
-    # Simpan ke DB
     try:
         db.session.query(HasilAALProvinsi).delete()
         mappings = final.to_dict(orient='records')

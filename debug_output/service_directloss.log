@@ -299,3 +299,31 @@ DETAIL:  Key (id_bangunan)=(BMN_11955) already exists.
 2025-05-04 12:59:48,880 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
 2025-05-04 12:59:48,919 INFO ✅ AAL saved
 2025-05-04 12:59:48,925 DEBUG === END process_all_disasters ===
+2025-05-05 11:32:27,909 DEBUG === START process_all_disasters ===
+2025-05-05 11:32:29,981 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-05 11:32:40,027 DEBUG 📥 Buildings: 284241 rows
+2025-05-05 11:32:41,426 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-05 11:39:14,703 DEBUG 📥 gempa: 284241 rows
+2025-05-05 11:39:14,829 DEBUG 📥 banjir: 284241 rows
+2025-05-05 11:39:14,961 DEBUG 📥 longsor: 284241 rows
+2025-05-05 11:39:15,064 DEBUG 📥 gunungberapi: 284241 rows
+2025-05-05 11:39:15,125 DEBUG direct_loss_gempa_500 sample: [4334322287.514638, 401170000.0, 5295301700.0]
+2025-05-05 11:39:15,169 DEBUG direct_loss_gempa_250 sample: [4385679390.0, 401170000.0, 5285170350.712393]
+2025-05-05 11:39:15,216 DEBUG direct_loss_gempa_100 sample: [4267335169.5279717, 291377849.13585734, 5295301700.0]
+2025-05-05 11:39:15,244 DEBUG direct_loss_banjir_100 sample: [0.0, 37878807.86876048, 0.0]
+2025-05-05 11:39:15,276 DEBUG direct_loss_banjir_50 sample: [0.0, 39914446.426886775, 0.0]
+2025-05-05 11:39:15,307 DEBUG direct_loss_banjir_25 sample: [0.0, 20943894.0207509, 0.0]
+2025-05-05 11:39:15,359 DEBUG direct_loss_longsor_5 sample: [4385679390.0, 401170000.0, 5295301700.0]
+2025-05-05 11:39:15,404 DEBUG direct_loss_longsor_2 sample: [4385679390.0, 363709507.8361585, 5295301700.0]
+2025-05-05 11:39:15,452 DEBUG direct_loss_gunungberapi_250 sample: [444253547.9902054, 40637078.08956612, 536395016.30409104]
+2025-05-05 11:39:15,500 DEBUG direct_loss_gunungberapi_100 sample: [444253547.9902054, 40637078.08956612, 536395016.30409104]
+2025-05-05 11:39:15,548 DEBUG direct_loss_gunungberapi_50 sample: [444253547.9902054, 40637078.08956612, 536395016.30409104]
+2025-05-05 11:41:41,814 INFO ✅ Direct Loss saved
+2025-05-05 11:41:45,812 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-05 11:41:46,539 DEBUG grp (provinsi,kode_bangunan) shape: (109, 11)
+2025-05-05 11:41:46,550 DEBUG AAL before pivot: (109, 13), cols: ['provinsi', 'kode_bangunan', 'aal_gempa_500', 'aal_gempa_250', 'aal_gempa_100', 'aal_banjir_100', 'aal_banjir_50', 'aal_banjir_25', 'aal_gunungberapi_250', 'aal_gunungberapi_100', 'aal_gunungberapi_50', 'aal_longsor_5', 'aal_longsor_2']
+2025-05-05 11:41:46,570 DEBUG pivot shape: (40, 34), cols: ['provinsi', 'aal_gempa_500_bmn', 'aal_gempa_500_fd', 'aal_gempa_500_fs', 'aal_gempa_250_bmn', 'aal_gempa_250_fd', 'aal_gempa_250_fs', 'aal_gempa_100_bmn', 'aal_gempa_100_fd', 'aal_gempa_100_fs', 'aal_banjir_100_bmn', 'aal_banjir_100_fd', 'aal_banjir_100_fs', 'aal_banjir_50_bmn', 'aal_banjir_50_fd', 'aal_banjir_50_fs', 'aal_banjir_25_bmn', 'aal_banjir_25_fd', 'aal_banjir_25_fs', 'aal_gunungberapi_250_bmn', 'aal_gunungberapi_250_fd', 'aal_gunungberapi_250_fs', 'aal_gunungberapi_100_bmn', 'aal_gunungberapi_100_fd', 'aal_gunungberapi_100_fs', 'aal_gunungberapi_50_bmn', 'aal_gunungberapi_50_fd', 'aal_gunungberapi_50_fs', 'aal_longsor_5_bmn', 'aal_longsor_5_fd', 'aal_longsor_5_fs', 'aal_longsor_2_bmn', 'aal_longsor_2_fd', 'aal_longsor_2_fs']
+2025-05-05 11:41:46,587 DEBUG pivot with totals shape: (40, 45)
+2025-05-05 11:41:46,601 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-05 11:41:46,657 INFO ✅ AAL saved
+2025-05-05 11:41:46,664 DEBUG === END process_all_disasters ===
