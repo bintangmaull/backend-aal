@@ -68,7 +68,7 @@ class BangunanController:
         try:
             ok = BangunanService.delete_bangunan(bangunan_id)
             if ok:
-                return jsonify({"message" : "Bangunan berhasil dihapus"}), 200
+                return jsonify({"message": "Bangunan berhasil dihapus"}), 200
             return jsonify({"error": "Bangunan tidak ditemukan"}), 404
         except Exception as e:
             logger.error(f"Error saat menghapus bangunan: {e}")
@@ -106,6 +106,21 @@ class BangunanController:
         except Exception as e:
             logger.error(f"Error get_kota_list: {e}")
             return jsonify([]), 500
+
+    @staticmethod
+    def get_kota_list_by_provinsi(provinsi):
+        """
+        GET /api/bangunan/provinsi/<provinsi>/kota
+        Mengambil daftar kota unik berdasarkan path-param provinsi.
+        """
+        try:
+            all_data = BangunanService.get_all_bangunan()
+            kotas = sorted({item['kota'] for item in all_data if item['provinsi'] == provinsi})
+            return jsonify(kotas), 200
+        except Exception as e:
+            logger.error(f"Error get_kota_list_by_provinsi({provinsi}): {e}")
+            return jsonify([]), 500
+
     @staticmethod
     def upload_csv():
         """
@@ -125,12 +140,9 @@ class BangunanController:
             return jsonify(result), 200
 
         except ValueError as ve:
-            # Kesalahan validasi atau parsing CSV
             logger.error("Error upload CSV (ValueError): %s", ve)
             return jsonify({"error": str(ve)}), 400
 
         except Exception as e:
-            # Kesalahan tak terduga
             logger.exception("Exception saat processing CSV upload")
             return jsonify({"error": "Terjadi kesalahan server saat upload CSV"}), 500
-    
