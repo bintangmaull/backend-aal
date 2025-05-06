@@ -4,6 +4,7 @@ from flask import Flask
 from sqlalchemy import text
 from app.config import Config
 from app.extensions import db, migrate
+from flask_cors import CORS
 
 # CRUD & raw-data blueprints
 from app.route.route_raw import main_bp
@@ -33,6 +34,8 @@ REFERENCE_CURVES_BANJIR = {}
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+
+    CORS(app, origins=["http://localhost:3000"])
 
     # ensure upload folder
     upload_folder = app.config.get('UPLOAD_FOLDER',

@@ -355,3 +355,502 @@ DETAIL:  Key (id_bangunan)=(BMN_11955) already exists.
 2025-05-05 14:13:42,579 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
 2025-05-05 14:13:42,608 INFO ✅ AAL saved
 2025-05-05 14:13:42,612 DEBUG === END process_all_disasters ===
+2025-05-06 00:35:59,887 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 00:36:04,453 ERROR ❌ Error during recalculation for building BMN_1746418892818: No building data found for ID BMN_1746418892818
+2025-05-06 00:40:32,314 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 00:41:48,474 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 00:43:26,927 DEBUG 📥 gempa: 284246 rows
+2025-05-06 00:43:26,958 DEBUG 📥 banjir: 284246 rows
+2025-05-06 00:43:26,992 DEBUG 📥 longsor: 284246 rows
+2025-05-06 00:43:27,021 DEBUG 📥 gunungberapi: 284246 rows
+2025-05-06 00:43:27,033 ERROR ❌ Error during recalculation for building BMN_1746418892818: Length of values (284246) does not match length of index (1)
+2025-05-06 00:46:44,473 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 00:48:10,292 DEBUG 📥 gempa: 284246 rows
+2025-05-06 00:48:10,329 DEBUG 📥 banjir: 284246 rows
+2025-05-06 00:48:10,369 DEBUG 📥 longsor: 284246 rows
+2025-05-06 00:48:10,404 DEBUG 📥 gunungberapi: 284246 rows
+2025-05-06 00:48:10,413 ERROR ❌ Error during recalculation for building BMN_1746418892818: Length of values (284246) does not match length of index (1)
+2025-05-06 00:49:54,782 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 00:49:59,899 DEBUG Building data for BMN_1746418892818:              id_bangunan  ... hsbgn
+53272  BMN_1746418892818  ...   0.0
+
+[1 rows x 10 columns]
+2025-05-06 00:51:19,576 DEBUG 📥 gempa: 284246 rows
+2025-05-06 00:51:19,604 DEBUG 📥 banjir: 284246 rows
+2025-05-06 00:51:19,643 DEBUG 📥 longsor: 284246 rows
+2025-05-06 00:51:19,677 DEBUG 📥 gunungberapi: 284246 rows
+2025-05-06 00:51:19,686 ERROR ❌ Error during recalculation for building BMN_1746418892818: Length of values (284246) does not match length of index (1)
+2025-05-06 00:55:57,280 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 00:57:20,357 DEBUG 📥 gempa: 284246 rows
+2025-05-06 00:57:20,385 DEBUG 📥 banjir: 284246 rows
+2025-05-06 00:57:20,418 DEBUG 📥 longsor: 284246 rows
+2025-05-06 00:57:20,448 DEBUG 📥 gunungberapi: 284246 rows
+2025-05-06 00:57:20,455 ERROR ❌ Error during recalculation for building BMN_1746418892818: Length of values (284246) does not match length of index (1)
+2025-05-06 00:58:07,368 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 00:59:31,381 DEBUG 📥 gempa: 284246 rows
+2025-05-06 00:59:31,413 DEBUG 📥 banjir: 284246 rows
+2025-05-06 00:59:31,451 DEBUG 📥 longsor: 284246 rows
+2025-05-06 00:59:31,485 DEBUG 📥 gunungberapi: 284246 rows
+2025-05-06 00:59:31,494 ERROR ❌ Error during recalculation for building BMN_1746418892818: Length of values (284246) does not match length of index (1)
+2025-05-06 01:01:31,113 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 01:01:36,384 DEBUG Building data for BMN_1746418892818:              id_bangunan  ... hsbgn
+53272  BMN_1746418892818  ...   0.0
+
+[1 rows x 10 columns]
+2025-05-06 01:02:55,040 ERROR ❌ Error during recalculation for building BMN_1746418892818: 'provinsi'
+2025-05-06 01:04:21,131 DEBUG === START recalculation for building FS_399 ===
+2025-05-06 01:04:25,688 DEBUG Building data for FS_399:       id_bangunan  ...      hsbgn
+50778      FS_399  ...  4270000.0
+
+[1 rows x 10 columns]
+2025-05-06 01:05:41,703 ERROR ❌ Error during recalculation for building FS_399: 'provinsi'
+2025-05-06 01:10:37,852 DEBUG === START recalculation for building FS_399 ===
+2025-05-06 01:10:42,891 DEBUG Building data for FS_399:       id_bangunan  ...      hsbgn
+50938      FS_399  ...  4270000.0
+
+[1 rows x 10 columns]
+2025-05-06 01:10:42,891 ERROR ❌ Error during recalculation for building FS_399: get_all_disaster_data() missing 2 required positional arguments: 'provinsi' and 'kota'
+2025-05-06 01:12:13,957 DEBUG === START recalculation for building FS_399 ===
+2025-05-06 01:12:18,739 DEBUG Building data for FS_399:       id_bangunan  ...      hsbgn
+50939      FS_399  ...  4270000.0
+
+[1 rows x 10 columns]
+2025-05-06 01:12:18,740 ERROR ❌ Error during recalculation for building FS_399: get_all_disaster_data() missing 2 required positional arguments: 'provinsi' and 'kota'
+2025-05-06 01:14:32,766 DEBUG === START recalculation for building FS_399 ===
+2025-05-06 01:14:37,508 DEBUG Building data for FS_399:       id_bangunan  ...      hsbgn
+50939      FS_399  ...  4270000.0
+
+[1 rows x 10 columns]
+2025-05-06 01:14:37,509 ERROR ❌ Error during recalculation for building FS_399: get_all_disaster_data() missing 2 required positional arguments: 'provinsi' and 'kota'
+2025-05-06 01:16:37,779 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 01:16:42,619 DEBUG Building data for BMN_1746418892818:              id_bangunan  ... hsbgn
+50938  BMN_1746418892818  ...   0.0
+
+[1 rows x 10 columns]
+2025-05-06 01:16:42,620 ERROR ❌ Error during recalculation for building BMN_1746418892818: get_all_disaster_data() missing 2 required positional arguments: 'provinsi' and 'kota'
+2025-05-06 01:18:50,449 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 01:18:55,384 ERROR ❌ Error during recalculation for building BMN_1746418892818: No building data found for ID BMN_1746418892818
+2025-05-06 01:19:43,296 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 01:19:48,221 DEBUG Building data for BMN_1746418892818:              id_bangunan  ... hsbgn
+50938  BMN_1746418892818  ...   0.0
+
+[1 rows x 10 columns]
+2025-05-06 01:19:48,222 ERROR ❌ Error during recalculation for building BMN_1746418892818: get_all_disaster_data() missing 2 required positional arguments: 'provinsi' and 'kota'
+2025-05-06 01:21:29,774 DEBUG === START recalculation for building BMN_1746418892818 ===
+2025-05-06 01:21:34,633 DEBUG Building data for BMN_1746418892818:              id_bangunan  ... hsbgn
+50938  BMN_1746418892818  ...   0.0
+
+[1 rows x 10 columns]
+2025-05-06 01:21:34,634 ERROR ❌ Error during recalculation for building BMN_1746418892818: get_all_disaster_data() missing 2 required positional arguments: 'provinsi' and 'kota'
+2025-05-06 01:28:12,988 DEBUG === START recalculation for building FS_1746418892960 ===
+2025-05-06 01:28:18,977 DEBUG Building data for FS_1746418892960:             id_bangunan  ... hsbgn
+50938  FS_1746418892960  ...   0.0
+
+[1 rows x 10 columns]
+2025-05-06 01:28:18,977 ERROR ❌ Error during recalculation for building FS_1746418892960: get_all_disaster_data() missing 2 required positional arguments: 'provinsi' and 'kota'
+2025-05-06 01:30:15,141 DEBUG === START recalculation for building FS_1746418892908 ===
+2025-05-06 01:30:20,282 DEBUG Building data for FS_1746418892908:             id_bangunan  ... hsbgn
+50939  FS_1746418892908  ...   0.0
+
+[1 rows x 10 columns]
+2025-05-06 01:30:20,282 ERROR ❌ Error during recalculation for building FS_1746418892908: get_all_disaster_data() missing 2 required positional arguments: 'provinsi' and 'kota'
+2025-05-06 13:47:39,210 DEBUG === START recalc for bangunan BMN_1746418892818 ===
+2025-05-06 13:47:40,508 DEBUG === START recalc for bangunan BMN_1746418892818 ===
+2025-05-06 13:49:09,935 DEBUG === START recalc for bangunan BMN_1746418892818 ===
+2025-05-06 13:49:59,715 DEBUG === START recalc for bangunan BMN_1746418892818 ===
+2025-05-06 13:51:24,354 ERROR ❌ Gagal menyimpan recalc DirectLoss: (psycopg2.errors.ForeignKeyViolation) insert or update on table "hasil_proses_directloss" violates foreign key constraint "id_bangunan_fkey"
+DETAIL:  Key (id_bangunan)=(BMN_1746418892818) is not present in table "bangunan".
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, direct_loss_gunungberapi_50, direct_loss_longsor_5, direct_loss_longsor_2) VALUES (%(id_bangunan)s, %(direct_loss_gempa_500)s, %(direct_loss_gempa_250)s, %(direct_loss_gempa_100)s, %(direct_loss_banjir_100)s, %(direct_loss_banjir_50)s, %(direct_loss_banjir_25)s, %(direct_loss_gunungberapi_250)s, %(direct_loss_gunungberapi_100)s, %(direct_loss_gunungberapi_50)s, %(direct_loss_longsor_5)s, %(direct_loss_longsor_2)s)]
+[parameters: {'id_bangunan': 'BMN_1746418892818', 'direct_loss_gempa_500': 0.0, 'direct_loss_gempa_250': 0.0, 'direct_loss_gempa_100': 0.0, 'direct_loss_banjir_100': 0.0, 'direct_loss_banjir_50': 0.0, 'direct_loss_banjir_25': 0.0, 'direct_loss_gunungberapi_250': 0.0, 'direct_loss_gunungberapi_100': 0.0, 'direct_loss_gunungberapi_50': 0.0, 'direct_loss_longsor_5': 0.0, 'direct_loss_longsor_2': 0.0}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-06 13:51:56,650 ERROR ❌ Gagal menyimpan recalc DirectLoss: (psycopg2.errors.ForeignKeyViolation) insert or update on table "hasil_proses_directloss" violates foreign key constraint "id_bangunan_fkey"
+DETAIL:  Key (id_bangunan)=(BMN_1746418892818) is not present in table "bangunan".
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, direct_loss_gunungberapi_50, direct_loss_longsor_5, direct_loss_longsor_2) VALUES (%(id_bangunan)s, %(direct_loss_gempa_500)s, %(direct_loss_gempa_250)s, %(direct_loss_gempa_100)s, %(direct_loss_banjir_100)s, %(direct_loss_banjir_50)s, %(direct_loss_banjir_25)s, %(direct_loss_gunungberapi_250)s, %(direct_loss_gunungberapi_100)s, %(direct_loss_gunungberapi_50)s, %(direct_loss_longsor_5)s, %(direct_loss_longsor_2)s)]
+[parameters: {'id_bangunan': 'BMN_1746418892818', 'direct_loss_gempa_500': 0.0, 'direct_loss_gempa_250': 0.0, 'direct_loss_gempa_100': 0.0, 'direct_loss_banjir_100': 0.0, 'direct_loss_banjir_50': 0.0, 'direct_loss_banjir_25': 0.0, 'direct_loss_gunungberapi_250': 0.0, 'direct_loss_gunungberapi_100': 0.0, 'direct_loss_gunungberapi_50': 0.0, 'direct_loss_longsor_5': 0.0, 'direct_loss_longsor_2': 0.0}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-06 13:53:51,571 DEBUG === START recalc for bangunan BMN_1746418892818 ===
+2025-05-06 13:55:24,405 ERROR ❌ Gagal menyimpan recalc DirectLoss: (psycopg2.errors.ForeignKeyViolation) insert or update on table "hasil_proses_directloss" violates foreign key constraint "id_bangunan_fkey"
+DETAIL:  Key (id_bangunan)=(BMN_1746418892818) is not present in table "bangunan".
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, direct_loss_gunungberapi_50, direct_loss_longsor_5, direct_loss_longsor_2) VALUES (%(id_bangunan)s, %(direct_loss_gempa_500)s, %(direct_loss_gempa_250)s, %(direct_loss_gempa_100)s, %(direct_loss_banjir_100)s, %(direct_loss_banjir_50)s, %(direct_loss_banjir_25)s, %(direct_loss_gunungberapi_250)s, %(direct_loss_gunungberapi_100)s, %(direct_loss_gunungberapi_50)s, %(direct_loss_longsor_5)s, %(direct_loss_longsor_2)s)]
+[parameters: {'id_bangunan': 'BMN_1746418892818', 'direct_loss_gempa_500': 0.0, 'direct_loss_gempa_250': 0.0, 'direct_loss_gempa_100': 0.0, 'direct_loss_banjir_100': 0.0, 'direct_loss_banjir_50': 0.0, 'direct_loss_banjir_25': 0.0, 'direct_loss_gunungberapi_250': 0.0, 'direct_loss_gunungberapi_100': 0.0, 'direct_loss_gunungberapi_50': 0.0, 'direct_loss_longsor_5': 0.0, 'direct_loss_longsor_2': 0.0}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-06 13:58:20,828 DEBUG === START recalc for bangunan BMN_1746418892818 ===
+2025-05-06 13:59:55,831 WARNING ⏭️ Skip insert DirectLoss untuk BMN_1746418892818: Key (id_bangunan)=(BMN_1746418892818) is not present in table "bangunan".
+2025-05-06 14:00:50,762 DEBUG === START recalc for bangunan FS_399 ===
+2025-05-06 14:02:28,101 INFO ✅ DirectLoss recalc saved for FS_399
+2025-05-06 14:03:32,345 DEBUG === START recalc for bangunan FS_399 ===
+2025-05-06 14:05:06,044 INFO ✅ DirectLoss recalc saved for FS_399
+2025-05-06 14:05:08,561 INFO ✅ AAL recalc saved for provinsi DI YOGYAKARTA
+2025-05-06 14:05:08,562 DEBUG === END recalc for bangunan FS_399 ===
+2025-05-06 14:07:31,989 DEBUG === START recalc for bangunan BMN_1 ===
+2025-05-06 14:09:05,064 INFO ✅ DirectLoss recalc saved for BMN_1
+2025-05-06 14:09:07,530 INFO ✅ AAL recalc saved for provinsi NUSA TENGGARA BARAT
+2025-05-06 14:09:07,530 DEBUG === END recalc for bangunan BMN_1 ===
+2025-05-06 14:12:16,623 DEBUG === START recalc for bangunan BMN_1 ===
+2025-05-06 14:13:51,116 INFO ✅ DirectLoss recalc saved for BMN_1
+2025-05-06 14:13:53,264 INFO ✅ AAL recalc saved for provinsi NUSA TENGGARA BARAT
+2025-05-06 14:13:53,265 DEBUG === END recalc for bangunan BMN_1 ===
+2025-05-06 14:14:58,533 DEBUG === START recalc for bangunan BMN_1 ===
+2025-05-06 14:16:31,646 INFO ✅ DirectLoss recalc saved for BMN_1
+2025-05-06 14:16:33,782 INFO ✅ AAL recalc saved for provinsi NUSA TENGGARA BARAT
+2025-05-06 14:16:33,782 DEBUG === END recalc for bangunan BMN_1 ===
+2025-05-06 14:17:30,218 DEBUG === START recalc for bangunan BMN_1746418892818 ===
+2025-05-06 14:19:03,057 WARNING ⏭️ Skip insert DirectLoss untuk BMN_1746418892818: Key (id_bangunan)=(BMN_1746418892818) is not present in table "bangunan".
+2025-05-06 14:19:05,237 INFO ✅ AAL recalc saved for provinsi DI Yogyakarta
+2025-05-06 14:19:05,238 DEBUG === END recalc for bangunan BMN_1746418892818 ===
+2025-05-06 14:24:06,111 DEBUG === START recalc for bangunan FS_399 ===
+2025-05-06 14:25:41,971 INFO ✅ DirectLoss recalc saved for FS_399
+2025-05-06 14:25:44,485 INFO ✅ AAL recalc saved for provinsi DI YOGYAKARTA
+2025-05-06 14:25:44,485 DEBUG === END recalc for bangunan FS_399 ===
+2025-05-06 14:30:58,420 DEBUG === START recalc for bangunan BMN_100984 ===
+2025-05-06 14:32:34,281 INFO ✅ DirectLoss recalc saved for BMN_100984
+2025-05-06 14:32:36,283 INFO ✅ AAL recalc saved for provinsi ACEH
+2025-05-06 14:32:36,284 DEBUG === END recalc for bangunan BMN_100984 ===
+2025-05-06 14:34:26,382 DEBUG === START recalc for bangunan BMN_100984 ===
+2025-05-06 14:36:01,610 INFO ✅ DirectLoss recalc saved for BMN_100984
+2025-05-06 14:36:03,767 INFO ✅ AAL recalc saved for provinsi ACEH
+2025-05-06 14:36:03,767 DEBUG === END recalc for bangunan BMN_100984 ===
+2025-05-06 14:39:44,165 DEBUG === START recalc for bangunan BMN_100984 ===
+2025-05-06 14:41:23,663 INFO ✅ DirectLoss recalc saved for BMN_100984
+2025-05-06 14:41:25,952 INFO ✅ AAL recalc saved for provinsi ACEH
+2025-05-06 14:41:25,952 DEBUG === END recalc for bangunan BMN_100984 ===
+2025-05-06 14:44:25,763 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 14:46:08,117 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 14:51:36,531 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 14:53:23,161 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 14:53:23,178 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 14:53:23,178 DEBUG === END incremental recalc for BMN_100984 ===
+2025-05-06 14:55:52,847 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 14:57:30,852 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 14:57:30,857 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 14:57:30,858 DEBUG === END incremental recalc for BMN_100984 ===
+2025-05-06 15:04:16,740 DEBUG === START incremental recalc for BMN_1 ===
+2025-05-06 15:05:51,329 DEBUG === START incremental recalc for BMN_1 ===
+2025-05-06 15:07:27,885 DEBUG ✅ DirectLoss updated for BMN_1
+2025-05-06 15:07:27,899 INFO ✅ AAL incremental updated for provinsi NUSA TENGGARA BARAT
+2025-05-06 15:07:27,900 DEBUG === END incremental recalc for BMN_1 ===
+2025-05-06 15:21:35,208 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 15:23:09,471 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 15:23:09,477 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 15:23:09,477 DEBUG === END incremental recalc for BMN_100984 ===
+2025-05-06 15:26:33,361 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 15:32:13,267 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 15:37:25,319 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 15:39:11,189 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 15:41:37,339 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 15:43:13,625 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 15:43:13,633 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 15:43:13,633 DEBUG === END incremental recalc for BMN_100984 ===
+2025-05-06 15:43:59,791 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 15:45:44,395 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 15:45:44,401 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 15:45:44,402 DEBUG === END incremental recalc for BMN_100984 ===
+2025-05-06 15:48:39,791 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 15:50:15,972 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 15:50:15,979 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 15:50:15,979 DEBUG === END incremental recalc for BMN_100984 ===
+2025-05-06 16:02:29,718 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 16:04:12,330 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 16:04:12,341 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 16:04:12,342 DEBUG === END incremental recalc for BMN_100984 ===
+2025-05-06 16:06:53,629 DEBUG === START incremental recalc for BMN_1746522412141 ===
+2025-05-06 16:11:12,045 DEBUG === START incremental recalc for BMN_1746522670239 ===
+2025-05-06 16:12:41,081 DEBUG ✅ DirectLoss updated for BMN_1746522670239
+2025-05-06 16:12:41,084 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 16:12:41,084 DEBUG === END incremental recalc for BMN_1746522670239 ===
+2025-05-06 16:18:18,845 DEBUG === START incremental recalc for BMN_1746523097889 ===
+2025-05-06 16:19:47,997 DEBUG ✅ DirectLoss updated for BMN_1746523097889
+2025-05-06 16:57:54,253 DEBUG === START incremental recalc for BMN_29764 ===
+2025-05-06 16:59:55,929 DEBUG ✅ DirectLoss updated for BMN_29764
+2025-05-06 16:59:55,934 INFO ✅ AAL incremental updated for provinsi GORONTALO
+2025-05-06 16:59:55,934 DEBUG === END incremental recalc for BMN_29764 ===
+2025-05-06 17:18:05,992 DEBUG === START process_all_disasters ===
+2025-05-06 17:18:06,689 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:18:10,510 DEBUG 📥 Buildings: 284271 rows
+2025-05-06 17:18:11,039 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:20:20,770 DEBUG 📥 gempa: 284271 rows
+2025-05-06 17:20:20,807 DEBUG 📥 banjir: 284271 rows
+2025-05-06 17:20:20,843 DEBUG 📥 longsor: 284271 rows
+2025-05-06 17:20:20,876 DEBUG 📥 gunungberapi: 284271 rows
+2025-05-06 17:20:20,946 DEBUG direct_loss_gempa_500 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:20:21,015 DEBUG direct_loss_gempa_250 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:20:21,088 DEBUG direct_loss_gempa_100 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:20:21,098 DEBUG direct_loss_banjir_100 sample: [138269297.35945088, 80228419.80942431, 129021974.82267304]
+2025-05-06 17:20:21,098 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:20:21,112 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:20:21,183 DEBUG direct_loss_longsor_5 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:20:21,257 DEBUG direct_loss_longsor_2 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:20:21,342 DEBUG direct_loss_gunungberapi_250 sample: [44503735.99381292, 44503735.99381292, 44503735.99381292]
+2025-05-06 17:20:21,425 DEBUG direct_loss_gunungberapi_100 sample: [44503735.99381292, 44503735.99381292, 44503735.99381292]
+2025-05-06 17:20:21,494 DEBUG direct_loss_gunungberapi_50 sample: [44503735.99381292, 44503735.99381292, 44503735.99381292]
+2025-05-06 17:20:29,689 DEBUG === START process_all_disasters ===
+2025-05-06 17:20:29,793 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:20:50,165 DEBUG 📥 Buildings: 284271 rows
+2025-05-06 17:20:51,024 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:21:18,386 INFO ✅ Direct Loss saved
+2025-05-06 17:21:22,318 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-06 17:21:22,993 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-06 17:21:23,024 INFO ✅ AAL saved
+2025-05-06 17:21:23,030 DEBUG === END process_all_disasters ===
+2025-05-06 17:22:31,363 DEBUG === START process_all_disasters ===
+2025-05-06 17:22:32,025 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:22:37,086 DEBUG 📥 Buildings: 284271 rows
+2025-05-06 17:22:37,788 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:25:50,523 DEBUG === START process_all_disasters ===
+2025-05-06 17:25:50,529 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:25:54,510 DEBUG 📥 Buildings: 284275 rows
+2025-05-06 17:25:55,005 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:26:54,712 DEBUG === START process_all_disasters ===
+2025-05-06 17:26:54,717 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:27:00,709 DEBUG 📥 Buildings: 284275 rows
+2025-05-06 17:27:01,425 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:28:07,843 DEBUG === START process_all_disasters ===
+2025-05-06 17:28:07,847 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:28:13,527 DEBUG 📥 Buildings: 284275 rows
+2025-05-06 17:28:14,519 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:29:36,870 DEBUG === START process_all_disasters ===
+2025-05-06 17:29:36,875 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:29:41,569 DEBUG 📥 Buildings: 284275 rows
+2025-05-06 17:29:42,143 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:31:42,240 DEBUG === START process_all_disasters ===
+2025-05-06 17:31:42,246 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:31:47,412 DEBUG 📥 Buildings: 284275 rows
+2025-05-06 17:31:48,033 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:33:45,080 DEBUG 📥 gempa: 284275 rows
+2025-05-06 17:33:45,121 DEBUG 📥 banjir: 284275 rows
+2025-05-06 17:33:45,168 DEBUG 📥 longsor: 284275 rows
+2025-05-06 17:33:45,208 DEBUG 📥 gunungberapi: 284275 rows
+2025-05-06 17:33:45,299 DEBUG direct_loss_gempa_500 sample: [4427504097.641169, 4536240000.0, 4520199827.276218]
+2025-05-06 17:33:45,405 DEBUG direct_loss_gempa_250 sample: [4498832330.432249, 4492520951.233052, 4530789719.173789]
+2025-05-06 17:33:45,550 DEBUG direct_loss_gempa_100 sample: [4536240000.0, 4103768381.5540032, 4236676595.4384007]
+2025-05-06 17:33:45,567 DEBUG direct_loss_banjir_100 sample: [379262701.6884499, 0.0, 62295771.93206185]
+2025-05-06 17:33:45,585 DEBUG direct_loss_banjir_50 sample: [186207881.77386522, 121325843.81121242, 121325843.81121242]
+2025-05-06 17:33:45,605 DEBUG direct_loss_banjir_25 sample: [165670808.4080196, 111747791.986591, 111747791.986591]
+2025-05-06 17:33:45,715 DEBUG direct_loss_longsor_5 sample: [2536671700.2140756, 4536240000.0, 4536240000.0]
+2025-05-06 17:33:45,817 DEBUG direct_loss_longsor_2 sample: [4449349173.750755, 4536240000.0, 4536240000.0]
+2025-05-06 17:33:45,897 DEBUG direct_loss_gunungberapi_250 sample: [45557036.07122281, 45557036.07122281, 45557036.07122281]
+2025-05-06 17:33:45,958 DEBUG direct_loss_gunungberapi_100 sample: [45557036.07122281, 45557036.07122281, 45557036.07122281]
+2025-05-06 17:33:46,046 DEBUG direct_loss_gunungberapi_50 sample: [45557036.07122281, 45557036.07122281, 45557036.07122281]
+2025-05-06 17:34:30,234 INFO ✅ Direct Loss saved
+2025-05-06 17:34:33,117 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-06 17:34:33,706 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-06 17:34:33,744 INFO ✅ AAL saved
+2025-05-06 17:34:33,748 DEBUG === END process_all_disasters ===
+2025-05-06 17:39:44,277 DEBUG === START process_all_disasters ===
+2025-05-06 17:39:45,146 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:39:49,317 DEBUG 📥 Buildings: 284275 rows
+2025-05-06 17:39:49,845 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:42:04,283 DEBUG 📥 gempa: 284275 rows
+2025-05-06 17:42:04,319 DEBUG 📥 banjir: 284275 rows
+2025-05-06 17:42:04,351 DEBUG 📥 longsor: 284275 rows
+2025-05-06 17:42:04,397 DEBUG 📥 gunungberapi: 284275 rows
+2025-05-06 17:42:04,471 DEBUG direct_loss_gempa_500 sample: [4427504097.641169, 4536240000.0, 4520199827.276218]
+2025-05-06 17:42:04,552 DEBUG direct_loss_gempa_250 sample: [4498832330.432249, 4492520951.233052, 4530789719.173789]
+2025-05-06 17:42:04,620 DEBUG direct_loss_gempa_100 sample: [4536240000.0, 4103768381.5540032, 4236676595.4384007]
+2025-05-06 17:42:04,620 DEBUG direct_loss_banjir_100 sample: [379262701.6884499, 0.0, 62295771.93206185]
+2025-05-06 17:42:04,632 DEBUG direct_loss_banjir_50 sample: [186207881.77386522, 121325843.81121242, 121325843.81121242]
+2025-05-06 17:42:04,648 DEBUG direct_loss_banjir_25 sample: [165670808.4080196, 111747791.986591, 111747791.986591]
+2025-05-06 17:42:04,710 DEBUG direct_loss_longsor_5 sample: [2536671700.2140756, 4536240000.0, 4536240000.0]
+2025-05-06 17:42:04,802 DEBUG direct_loss_longsor_2 sample: [4449349173.750755, 4536240000.0, 4536240000.0]
+2025-05-06 17:42:04,882 DEBUG direct_loss_gunungberapi_250 sample: [45557036.07122281, 45557036.07122281, 45557036.07122281]
+2025-05-06 17:42:04,946 DEBUG direct_loss_gunungberapi_100 sample: [45557036.07122281, 45557036.07122281, 45557036.07122281]
+2025-05-06 17:42:05,028 DEBUG direct_loss_gunungberapi_50 sample: [45557036.07122281, 45557036.07122281, 45557036.07122281]
+2025-05-06 17:42:52,580 INFO ✅ Direct Loss saved
+2025-05-06 17:42:56,507 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-06 17:42:57,121 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-06 17:42:57,143 INFO ✅ AAL saved
+2025-05-06 17:42:57,147 DEBUG === END process_all_disasters ===
+2025-05-06 17:46:36,116 DEBUG === START process_all_disasters ===
+2025-05-06 17:46:36,963 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:46:42,726 DEBUG 📥 Buildings: 284275 rows
+2025-05-06 17:46:43,563 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:47:00,586 DEBUG === START process_all_disasters ===
+2025-05-06 17:47:00,630 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:47:12,461 DEBUG 📥 Buildings: 284275 rows
+2025-05-06 17:47:13,188 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:49:29,768 DEBUG 📥 gempa: 284275 rows
+2025-05-06 17:49:29,809 DEBUG 📥 banjir: 284275 rows
+2025-05-06 17:49:29,855 DEBUG 📥 longsor: 284275 rows
+2025-05-06 17:49:29,899 DEBUG 📥 gunungberapi: 284275 rows
+2025-05-06 17:49:29,990 DEBUG direct_loss_gempa_500 sample: [4427504097.641169, 4536240000.0, 4520199827.276218]
+2025-05-06 17:49:30,097 DEBUG direct_loss_gempa_250 sample: [4498832330.432249, 4492520951.233052, 4530789719.173789]
+2025-05-06 17:49:30,208 DEBUG direct_loss_gempa_100 sample: [4536240000.0, 4103768381.5540032, 4236676595.4384007]
+2025-05-06 17:49:30,223 DEBUG direct_loss_banjir_100 sample: [0.0, 0.0, 248288578.12928447]
+2025-05-06 17:49:30,237 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:49:30,250 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:49:30,344 DEBUG direct_loss_longsor_5 sample: [4536240000.0, 4536240000.0, 4536240000.0]
+2025-05-06 17:49:30,438 DEBUG direct_loss_longsor_2 sample: [4536240000.0, 4536240000.0, 4536240000.0]
+2025-05-06 17:49:30,538 DEBUG direct_loss_gunungberapi_250 sample: [45557036.07122281, 45557036.07122281, 45557036.07122281]
+2025-05-06 17:49:30,643 DEBUG direct_loss_gunungberapi_100 sample: [45557036.07122281, 45557036.07122281, 45557036.07122281]
+2025-05-06 17:49:30,716 DEBUG direct_loss_gunungberapi_50 sample: [45557036.07122281, 45557036.07122281, 45557036.07122281]
+2025-05-06 17:50:03,536 DEBUG 📥 gempa: 284275 rows
+2025-05-06 17:50:03,613 DEBUG 📥 banjir: 284275 rows
+2025-05-06 17:50:03,687 DEBUG 📥 longsor: 284275 rows
+2025-05-06 17:50:03,761 DEBUG 📥 gunungberapi: 284275 rows
+2025-05-06 17:50:03,874 DEBUG direct_loss_gempa_500 sample: [3306573248.308466, 3387780000.0, 3375800788.946314]
+2025-05-06 17:50:03,984 DEBUG direct_loss_gempa_250 sample: [3359842996.047776, 3355129496.7127643, 3383709590.9437284]
+2025-05-06 17:50:04,138 DEBUG direct_loss_gempa_100 sample: [3387780000.0, 3064799139.300615, 3164058391.1993866]
+2025-05-06 17:50:04,148 DEBUG direct_loss_banjir_100 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:50:04,164 DEBUG direct_loss_banjir_50 sample: [0.0, 21703800.313152164, 1239422862.2359607]
+2025-05-06 17:50:04,180 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 1203761150.7087064]
+2025-05-06 17:50:04,344 DEBUG direct_loss_longsor_5 sample: [3387780000.0, 3387780000.0, 3387780000.0]
+2025-05-06 17:50:04,563 DEBUG direct_loss_longsor_2 sample: [3270129670.6527576, 3002180652.989902, 3325106058.935593]
+2025-05-06 17:50:04,709 DEBUG direct_loss_gunungberapi_250 sample: [34023159.193818495, 34023159.193818495, 34023159.193818495]
+2025-05-06 17:50:04,845 DEBUG direct_loss_gunungberapi_100 sample: [34023159.193818495, 34023159.193818495, 34023159.193818495]
+2025-05-06 17:50:05,001 DEBUG direct_loss_gunungberapi_50 sample: [34023159.193818495, 34023159.193818495, 34023159.193818495]
+2025-05-06 17:50:31,532 INFO ✅ Direct Loss saved
+2025-05-06 17:50:38,774 ERROR ❌ Saving Direct Loss failed: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "hasil_proses_directloss_pkey"
+DETAIL:  Key (id_bangunan)=(FD_46895) already exists.
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, d ... 395659 characters truncated ... (direct_loss_gunungberapi_50__999)s, %(direct_loss_longsor_5__999)s, %(direct_loss_longsor_2__999)s)]
+[parameters: {'direct_loss_gempa_250__0': 3359842996.047776, 'direct_loss_longsor_5__0': 3387780000.0, 'direct_loss_gempa_500__0': 3306573248.308466, 'direct_loss_banjir_50__0': 0.0, 'direct_loss_gunungberapi_250__0': 34023159.193818495, 'direct_loss_banjir_100__0': 0.0, 'direct_loss_gunungberapi_50__0': 34023159.193818495, 'direct_loss_longsor_2__0': 3270129670.6527576, 'direct_loss_gempa_100__0': 3387780000.0, 'id_bangunan__0': 'FD_46895', 'direct_loss_gunungberapi_100__0': 34023159.193818495, 'direct_loss_banjir_25__0': 0.0, 'direct_loss_gempa_250__1': 3355129496.7127643, 'direct_loss_longsor_5__1': 3387780000.0, 'direct_loss_gempa_500__1': 3387780000.0, 'direct_loss_banjir_50__1': 21703800.313152164, 'direct_loss_gunungberapi_250__1': 34023159.193818495, 'direct_loss_banjir_100__1': 0.0, 'direct_loss_gunungberapi_50__1': 34023159.193818495, 'direct_loss_longsor_2__1': 3002180652.989902, 'direct_loss_gempa_100__1': 3064799139.300615, 'id_bangunan__1': 'FD_46896', 'direct_loss_gunungberapi_100__1': 34023159.193818495, 'direct_loss_banjir_25__1': 0.0, 'direct_loss_gempa_250__2': 3383709590.9437284, 'direct_loss_longsor_5__2': 3387780000.0, 'direct_loss_gempa_500__2': 3375800788.946314, 'direct_loss_banjir_50__2': 1239422862.2359607, 'direct_loss_gunungberapi_250__2': 34023159.193818495, 'direct_loss_banjir_100__2': 0.0, 'direct_loss_gunungberapi_50__2': 34023159.193818495, 'direct_loss_longsor_2__2': 3325106058.935593, 'direct_loss_gempa_100__2': 3164058391.1993866, 'id_bangunan__2': 'FD_46897', 'direct_loss_gunungberapi_100__2': 34023159.193818495, 'direct_loss_banjir_25__2': 1203761150.7087064, 'direct_loss_gempa_250__3': 3383709590.9437284, 'direct_loss_longsor_5__3': 3387780000.0, 'direct_loss_gempa_500__3': 3375800788.946314, 'direct_loss_banjir_50__3': 0.0, 'direct_loss_gunungberapi_250__3': 34023159.193818495, 'direct_loss_banjir_100__3': 209401086.86733326, 'direct_loss_gunungberapi_50__3': 34023159.193818495, 'direct_loss_longsor_2__3': 3002180652.989902, 'direct_loss_gempa_100__3': 3164058391.1993866, 'id_bangunan__3': 'FD_46898', 'direct_loss_gunungberapi_100__3': 34023159.193818495, 'direct_loss_banjir_25__3': 0.0, 'direct_loss_gempa_250__4': 3387780000.0, 'direct_loss_longsor_5__4': 3387780000.0 ... 11900 parameters truncated ... 'direct_loss_gunungberapi_100__995': 37492079.67187104, 'direct_loss_banjir_25__995': 20149737.274104662, 'direct_loss_gempa_250__996': 3372803341.84917, 'direct_loss_longsor_5__996': 3733190000.0, 'direct_loss_gempa_500__996': 3731591005.326949, 'direct_loss_banjir_50__996': 0.0, 'direct_loss_gunungberapi_250__996': 37492079.67187104, 'direct_loss_banjir_100__996': 0.0, 'direct_loss_gunungberapi_50__996': 37492079.67187104, 'direct_loss_longsor_2__996': 3508292153.7447333, 'direct_loss_gempa_100__996': 2551371292.5495887, 'id_bangunan__996': 'FD_47891', 'direct_loss_gunungberapi_100__996': 37492079.67187104, 'direct_loss_banjir_25__996': 0.0, 'direct_loss_gempa_250__997': 3372803341.84917, 'direct_loss_longsor_5__997': 3733190000.0, 'direct_loss_gempa_500__997': 3731591005.326949, 'direct_loss_banjir_50__997': 15869629.420257133, 'direct_loss_gunungberapi_250__997': 37492079.67187104, 'direct_loss_banjir_100__997': 0.0, 'direct_loss_gunungberapi_50__997': 37492079.67187104, 'direct_loss_longsor_2__997': 3508292153.7447333, 'direct_loss_gempa_100__997': 2551371292.5495887, 'id_bangunan__997': 'FD_47892', 'direct_loss_gunungberapi_100__997': 37492079.67187104, 'direct_loss_banjir_25__997': 11313446.661767455, 'direct_loss_gempa_250__998': 3372803341.84917, 'direct_loss_longsor_5__998': 3733190000.0, 'direct_loss_gempa_500__998': 3731591005.326949, 'direct_loss_banjir_50__998': 0.0, 'direct_loss_gunungberapi_250__998': 37492079.67187104, 'direct_loss_banjir_100__998': 128817617.3042312, 'direct_loss_gunungberapi_50__998': 37492079.67187104, 'direct_loss_longsor_2__998': 3481495440.997797, 'direct_loss_gempa_100__998': 2551371292.5495887, 'id_bangunan__998': 'FD_47893', 'direct_loss_gunungberapi_100__998': 37492079.67187104, 'direct_loss_banjir_25__998': 6204509.301172597, 'direct_loss_gempa_250__999': 3106950081.0079646, 'direct_loss_longsor_5__999': 3733190000.0, 'direct_loss_gempa_500__999': 3669176849.425337, 'direct_loss_banjir_50__999': 0.0, 'direct_loss_gunungberapi_250__999': 37492079.67187104, 'direct_loss_banjir_100__999': 0.0, 'direct_loss_gunungberapi_50__999': 37492079.67187104, 'direct_loss_longsor_2__999': 3706581915.966057, 'direct_loss_gempa_100__999': 2103696628.2166188, 'id_bangunan__999': 'FD_47894', 'direct_loss_gunungberapi_100__999': 37492079.67187104, 'direct_loss_banjir_25__999': 0.0}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-06 17:50:41,190 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-06 17:50:41,732 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-06 17:50:41,753 INFO ✅ AAL saved
+2025-05-06 17:50:41,757 DEBUG === END process_all_disasters ===
+2025-05-06 17:56:47,530 DEBUG === START process_all_disasters ===
+2025-05-06 17:56:48,436 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 17:56:53,789 DEBUG 📥 Buildings: 284275 rows
+2025-05-06 17:56:54,453 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 17:59:22,729 DEBUG 📥 gempa: 284275 rows
+2025-05-06 17:59:22,805 DEBUG 📥 banjir: 284275 rows
+2025-05-06 17:59:22,862 DEBUG 📥 longsor: 284275 rows
+2025-05-06 17:59:22,922 DEBUG 📥 gunungberapi: 284275 rows
+2025-05-06 17:59:23,025 DEBUG direct_loss_gempa_500 sample: [196682160.5222784, 530331355.85632527, 819603004.50523]
+2025-05-06 17:59:23,130 DEBUG direct_loss_gempa_250 sample: [162290816.42233974, 424605236.72990954, 656208093.1280421]
+2025-05-06 17:59:23,229 DEBUG direct_loss_gempa_100 sample: [110128057.68521169, 255692193.1458703, 395160662.1345268]
+2025-05-06 17:59:23,238 DEBUG direct_loss_banjir_100 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:59:23,248 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:59:23,259 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-06 17:59:23,355 DEBUG direct_loss_longsor_5 sample: [204097506.0, 552369490.53, 853661939.91]
+2025-05-06 17:59:23,471 DEBUG direct_loss_longsor_2 sample: [171677921.41739652, 447403473.22554576, 691441731.3485707]
+2025-05-06 17:59:23,603 DEBUG direct_loss_gunungberapi_250 sample: [2049732.254662146, 5547395.376946144, 8573247.40073495]
+2025-05-06 17:59:23,713 DEBUG direct_loss_gunungberapi_100 sample: [2049732.254662146, 5547395.376946144, 8573247.40073495]
+2025-05-06 17:59:23,816 DEBUG direct_loss_gunungberapi_50 sample: [2049732.254662146, 5547395.376946144, 8573247.40073495]
+2025-05-06 18:00:18,748 INFO ✅ Direct Loss saved
+2025-05-06 18:00:23,104 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-06 18:00:23,843 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-06 18:00:23,871 INFO ✅ AAL saved
+2025-05-06 18:00:23,876 DEBUG === END process_all_disasters ===
+2025-05-06 18:00:56,262 DEBUG === START incremental recalc for FS_399 ===
+2025-05-06 18:02:48,621 DEBUG === START incremental recalc for FS_399 ===
+2025-05-06 18:02:50,410 DEBUG === START incremental recalc for FS_399 ===
+2025-05-06 18:03:02,487 DEBUG ✅ DirectLoss updated for FS_399
+2025-05-06 18:03:02,500 INFO ✅ AAL incremental updated for provinsi DI YOGYAKARTA
+2025-05-06 18:03:02,501 DEBUG === END incremental recalc for FS_399 ===
+2025-05-06 18:04:32,264 DEBUG === START incremental recalc for FS_399 ===
+2025-05-06 18:05:37,543 DEBUG ✅ DirectLoss updated for FS_399
+2025-05-06 18:05:37,550 INFO ✅ AAL incremental updated for provinsi DI YOGYAKARTA
+2025-05-06 18:05:37,551 DEBUG === END incremental recalc for FS_399 ===
+2025-05-06 18:05:46,642 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 18:06:12,746 DEBUG === START incremental recalc for FS_399 ===
+2025-05-06 18:07:26,310 DEBUG ✅ DirectLoss updated for FS_399
+2025-05-06 18:07:26,320 INFO ✅ AAL incremental updated for provinsi DI YOGYAKARTA
+2025-05-06 18:07:26,320 DEBUG === END incremental recalc for FS_399 ===
+2025-05-06 18:08:45,505 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 18:08:45,525 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 18:08:45,525 DEBUG === END incremental recalc for BMN_100984 ===
+2025-05-06 18:09:08,910 DEBUG ✅ DirectLoss updated for FS_399
+2025-05-06 18:09:08,916 INFO ✅ AAL incremental updated for provinsi DI YOGYAKARTA
+2025-05-06 18:09:08,916 DEBUG === END incremental recalc for FS_399 ===
+2025-05-06 18:10:38,072 DEBUG === START incremental recalc for FD_65078 ===
+2025-05-06 18:12:36,355 DEBUG ✅ DirectLoss updated for FD_65078
+2025-05-06 18:12:36,360 INFO ✅ AAL incremental updated for provinsi BANTEN
+2025-05-06 18:12:36,360 DEBUG === END incremental recalc for FD_65078 ===
+2025-05-06 18:16:30,056 DEBUG === START incremental recalc for FD_65078 ===
+2025-05-06 18:18:22,964 DEBUG ✅ DirectLoss updated for FD_65078
+2025-05-06 18:18:22,967 INFO ✅ AAL incremental updated for provinsi BANTEN
+2025-05-06 18:18:22,968 DEBUG === END incremental recalc for FD_65078 ===
+2025-05-06 18:19:47,516 DEBUG === START incremental recalc for FD_1549 ===
+2025-05-06 18:21:51,045 DEBUG ✅ DirectLoss updated for FD_1549
+2025-05-06 18:21:51,051 INFO ✅ AAL incremental updated for provinsi BALI
+2025-05-06 18:21:51,051 DEBUG === END incremental recalc for FD_1549 ===
+2025-05-06 18:33:19,532 DEBUG === START process_all_disasters ===
+2025-05-06 18:33:20,497 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 18:33:25,884 DEBUG 📥 Buildings: 284277 rows
+2025-05-06 18:33:26,753 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 18:35:25,494 DEBUG 📥 gempa: 284277 rows
+2025-05-06 18:35:25,539 DEBUG 📥 banjir: 284277 rows
+2025-05-06 18:35:25,580 DEBUG 📥 longsor: 284277 rows
+2025-05-06 18:35:25,626 DEBUG 📥 gunungberapi: 284277 rows
+2025-05-06 18:35:25,701 DEBUG direct_loss_gempa_500 sample: [1060029036.2314886, 0.0, 0.0]
+2025-05-06 18:35:25,767 DEBUG direct_loss_gempa_250 sample: [966967811.4933789, 0.0, 0.0]
+2025-05-06 18:35:25,843 DEBUG direct_loss_gempa_100 sample: [760352515.6240429, 0.0, 0.0]
+2025-05-06 18:35:25,855 DEBUG direct_loss_banjir_100 sample: [0.0, 0.0, 0.0]
+2025-05-06 18:35:25,863 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-06 18:35:25,872 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-06 18:35:25,943 DEBUG direct_loss_longsor_5 sample: [1060957000.0, 0.0, 0.0]
+2025-05-06 18:35:26,017 DEBUG direct_loss_longsor_2 sample: [1046409838.1277983, 0.0, 0.0]
+2025-05-06 18:35:26,098 DEBUG direct_loss_gunungberapi_250 sample: [10655092.393483665, 0.0, 0.0]
+2025-05-06 18:35:26,177 DEBUG direct_loss_gunungberapi_100 sample: [10655092.393483665, 0.0, 0.0]
+2025-05-06 18:35:26,255 DEBUG direct_loss_gunungberapi_50 sample: [10655092.393483665, 0.0, 0.0]
+2025-05-06 18:36:11,667 INFO ✅ Direct Loss saved
+2025-05-06 18:36:14,834 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-06 18:36:15,443 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-06 18:36:15,473 INFO ✅ AAL saved
+2025-05-06 18:36:15,478 DEBUG === END process_all_disasters ===
+2025-05-06 18:55:53,516 DEBUG === START incremental recalc for BMN_100984 ===
+2025-05-06 18:58:26,211 DEBUG ✅ DirectLoss updated for BMN_100984
+2025-05-06 18:58:26,220 INFO ✅ AAL incremental updated for provinsi ACEH
+2025-05-06 18:58:26,221 DEBUG === END incremental recalc for BMN_100984 ===
+2025-05-06 19:04:22,332 DEBUG === START incremental recalc for FS_1746533059791 ===
+2025-05-06 19:06:20,652 DEBUG ✅ DirectLoss updated for FS_1746533059791
+2025-05-06 19:06:20,658 INFO ✅ AAL incremental updated for provinsi BANTEN
+2025-05-06 19:06:20,658 DEBUG === END incremental recalc for FS_1746533059791 ===
+2025-05-06 19:36:06,405 DEBUG === START incremental recalc for BMN_49959 ===
+2025-05-06 19:36:43,244 DEBUG === START incremental recalc for BMN_49975 ===
+2025-05-06 19:39:01,879 DEBUG ✅ DirectLoss updated for BMN_49975
+2025-05-06 19:39:01,891 INFO ✅ AAL incremental updated for provinsi BANTEN
+2025-05-06 19:39:01,892 DEBUG === END incremental recalc for BMN_49975 ===
+2025-05-06 20:12:33,334 DEBUG === START incremental recalc for BMN_77126 ===
+2025-05-06 20:13:46,732 DEBUG === START incremental recalc for BMN_49975 ===
+2025-05-06 20:17:55,325 DEBUG === START incremental recalc for FS_1746537473672 ===
+2025-05-06 20:23:06,415 DEBUG === START incremental recalc for BMN_56551 ===
+2025-05-06 20:25:27,122 DEBUG ✅ DirectLoss updated for BMN_56551
+2025-05-06 20:25:27,133 INFO ✅ AAL incremental updated for provinsi SUMATERA SELATAN
+2025-05-06 20:25:27,134 DEBUG === END incremental recalc for BMN_56551 ===
+2025-05-06 20:40:23,729 DEBUG === START incremental recalc for BMN_78770 ===
+2025-05-06 20:43:32,230 DEBUG === START incremental recalc for BMN_111725 ===
+2025-05-06 20:45:54,426 DEBUG ✅ DirectLoss updated for BMN_111725
+2025-05-06 20:45:54,490 INFO ✅ AAL incremental updated for provinsi SUMATERA SELATAN
+2025-05-06 20:45:54,490 DEBUG === END incremental recalc for BMN_111725 ===
+2025-05-06 21:05:19,041 DEBUG === START incremental recalc for BMN_111727 ===
+2025-05-06 21:07:38,107 DEBUG ✅ DirectLoss updated for BMN_111727
+2025-05-06 21:07:38,142 INFO ✅ AAL incremental updated for provinsi SUMATERA SELATAN
+2025-05-06 21:07:38,143 DEBUG === END incremental recalc for BMN_111727 ===
+2025-05-06 21:21:18,104 DEBUG === START process_all_disasters ===
+2025-05-06 21:21:19,083 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 21:21:22,083 DEBUG 📥 Buildings: 284260 rows
+2025-05-06 21:21:22,573 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 21:23:56,033 DEBUG 📥 gempa: 284260 rows
+2025-05-06 21:23:56,084 DEBUG 📥 banjir: 284260 rows
+2025-05-06 21:23:56,136 DEBUG 📥 longsor: 284260 rows
+2025-05-06 21:23:56,186 DEBUG 📥 gunungberapi: 284260 rows
+2025-05-06 21:23:56,214 DEBUG direct_loss_gempa_500 sample: [819101931.6733277, 265800000.0, 2802574999.177481]
+2025-05-06 21:23:56,236 DEBUG direct_loss_gempa_250 sample: [824580000.0, 265800000.0, 2826000000.0]
+2025-05-06 21:23:56,259 DEBUG direct_loss_gempa_100 sample: [708965580.0228484, 265800000.0, 2421958310.382602]
+2025-05-06 21:23:56,275 DEBUG direct_loss_banjir_100 sample: [0.0, 28594448.23199074, 246755205.51111716]
+2025-05-06 21:23:56,290 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-06 21:23:56,301 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 187597099.24535134]
+2025-05-06 21:23:56,323 DEBUG direct_loss_longsor_5 sample: [824580000.0, 265800000.0, 2826000000.0]
+2025-05-06 21:23:56,347 DEBUG direct_loss_longsor_2 sample: [813868069.015025, 265800000.0, 2818147753.4658823]
+2025-05-06 21:23:56,369 DEBUG direct_loss_gunungberapi_250 sample: [83526988.18728825, 26924583.982368257, 286263635.56874603]
+2025-05-06 21:23:56,391 DEBUG direct_loss_gunungberapi_100 sample: [83526988.18728825, 26924583.982368257, 286263635.56874603]
+2025-05-06 21:23:56,413 DEBUG direct_loss_gunungberapi_50 sample: [83526988.18728825, 26924583.982368257, 286263635.56874603]
+2025-05-06 21:24:50,042 INFO ✅ Direct Loss saved
+2025-05-06 21:24:54,274 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-06 21:24:54,928 DEBUG grp (provinsi,kode_bangunan) shape: (114, 11)
+2025-05-06 21:24:54,933 DEBUG AAL before pivot: (114, 13)
+2025-05-06 21:24:54,944 DEBUG pivot shape: (44, 34)
+2025-05-06 21:24:54,954 DEBUG pivot with totals shape: (44, 45)
+2025-05-06 21:24:54,968 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-06 21:24:55,021 INFO ✅ AAL saved
+2025-05-06 21:24:55,026 DEBUG === END process_all_disasters ===
+2025-05-06 21:28:40,249 DEBUG === START incremental recalc for BMN_1746541717721 ===
+2025-05-06 21:31:30,885 DEBUG ✅ DirectLoss updated for BMN_1746541717721
+2025-05-06 21:31:30,916 INFO ✅ AAL incremental updated for provinsi JAWA BARAT
+2025-05-06 21:31:30,917 DEBUG === END incremental recalc for BMN_1746541717721 ===

@@ -1,0 +1,50 @@
+2025-05-06 15:04:16,741 DEBUG ✅ DB connection established
+2025-05-06 15:04:19,473 DEBUG 📄 Wrote bangunan_copy data to E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\debug_bangunan_copy.csv
+2025-05-06 15:04:19,927 DEBUG ✅ DB connection established
+2025-05-06 15:04:19,927 DEBUG 📥 Loading hazard 'gempa'
+
+            SELECT
+              b.id_bangunan,
+       h.dmgratio_cr_mmi500      AS nilai_y_cr_mmi500,
+       h.dmgratio_mcf_mmi500     AS nilai_y_mcf_mmi500,
+       h.dmgratio_mur_mmi500     AS nilai_y_mur_mmi500,
+       h.dmgratio_lightwood_mmi500 AS nilai_y_lightwood_mmi500,
+       h.dmgratio_cr_mmi250      AS nilai_y_cr_mmi250,
+       h.dmgratio_mcf_mmi250     AS nilai_y_mcf_mmi250,
+       h.dmgratio_mur_mmi250     AS nilai_y_mur_mmi250,
+       h.dmgratio_lightwood_mmi250 AS nilai_y_lightwood_mmi250,
+       h.dmgratio_cr_mmi100      AS nilai_y_cr_mmi100,
+       h.dmgratio_mcf_mmi100     AS nilai_y_mcf_mmi100,
+       h.dmgratio_mur_mmi100     AS nilai_y_mur_mmi100,
+       h.dmgratio_lightwood_mmi100 AS nilai_y_lightwood_mmi100
+            FROM bangunan_copy AS b
+            LEFT JOIN LATERAL (
+              SELECT id_lokasi
+              FROM model_intensitas_gempa AS r
+              ORDER BY b.geom <-> r.geom
+              LIMIT 1
+            ) AS near ON TRUE
+            JOIN dmgratio_gempa AS h
+              ON h.id_lokasi = near.id_lokasi;
+        
+2025-05-06 15:04:38,351 DEBUG 📄 Wrote hazard 'gempa' to E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\debug_postgres_gempa.csv
+2025-05-06 15:04:38,352 DEBUG 📥 Loading hazard 'banjir'
+
+            SELECT
+              b.id_bangunan,
+       h.nilai_y_1_depth100 AS nilai_y_1_depth100,
+       h.nilai_y_2_depth100 AS nilai_y_2_depth100,
+       h.nilai_y_1_depth50 AS nilai_y_1_depth50,
+       h.nilai_y_2_depth50 AS nilai_y_2_depth50,
+       h.nilai_y_1_depth25 AS nilai_y_1_depth25,
+       h.nilai_y_2_depth25 AS nilai_y_2_depth25
+            FROM bangunan_copy AS b
+            LEFT JOIN LATERAL (
+              SELECT id_lokasi
+              FROM model_intensitas_banjir AS r
+              ORDER BY b.geom <-> r.geom
+              LIMIT 1
+            ) AS near ON TRUE
+            JOIN dmgratio_banjir_copy AS h
+              ON h.id_lokasi = near.id_lokasi;
+        

@@ -1,0 +1,3336 @@
+2025-05-06 15:13:56,951 DEBUG Executing fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              (to_jsonb(b) - 'geom' - 'provinsi' - 'kota')
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',     COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING (id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:17:26,521 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:17:26,531 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 15:17:40,981 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- remove geom, then override provinsi/kota to non-null, then merge d
+              (to_jsonb(b) - 'geom')
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:18:00,359 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:18:00,386 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 15:18:09,114 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- remove geom, then override provinsi/kota to non-null, then merge d
+              (to_jsonb(b) - 'geom')
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:19:33,735 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:19:33,764 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 15:19:39,546 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:20:25,494 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:20:26,735 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:20:34,525 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:20:35,622 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:20:40,340 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:20:41,253 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:21:00,038 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:21:01,831 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:24:24,056 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:24:24,060 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 15:24:29,770 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:33:23,799 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:33:24,542 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:37:06,991 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:37:06,997 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 15:38:59,515 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:38:59,522 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 15:41:26,306 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:41:26,308 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 15:43:28,699 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:43:28,702 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 15:43:34,193 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:45:51,050 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:45:52,153 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 15:53:43,340 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:53:43,342 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 15:55:26,699 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 15:55:26,700 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:02:12,288 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:02:12,295 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:04:24,002 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 16:12:58,230 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:12:58,235 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:13:04,008 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 16:16:52,108 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:16:52,110 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:20:20,781 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 16:20:29,358 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 16:25:24,278 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:25:24,280 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:34:11,552 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:34:11,555 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:36:40,821 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:36:40,824 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:40:28,841 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:40:28,844 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:42:08,868 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:42:08,872 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:42:16,575 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 16:44:57,278 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:44:57,280 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:44:57,294 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 16:45:03,757 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:45:03,759 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:46:34,663 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:46:34,667 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:53:05,101 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:53:05,101 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:54:27,790 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:54:27,792 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:56:21,162 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:56:21,176 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 16:56:27,439 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 16:56:27,443 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:08:22,345 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:08:22,354 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:08:33,213 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:08:33,214 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:16:04,754 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:16:04,771 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:16:20,655 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:16:20,658 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:17:14,580 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:17:14,584 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:22:04,623 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:24:53,142 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:24:53,147 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:24:59,423 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:24:59,439 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:25:38,435 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:25:38,437 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:25:42,081 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:25:42,125 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:26:18,965 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:26:26,114 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:26:33,652 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:27:57,113 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:28:44,924 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:30:47,334 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:30:47,342 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:38:09,033 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:38:09,037 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:39:35,461 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:39:35,461 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:45:54,149 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:45:54,157 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 17:46:52,352 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 17:46:52,353 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:02:32,933 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:02:32,960 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:05:01,789 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:05:01,791 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:05:06,898 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:05:09,551 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:05:13,178 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:06:39,036 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:06:39,040 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:06:42,631 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:08:18,369 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:08:18,377 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:08:23,577 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:09:09,429 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:09:10,870 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:11:47,001 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:11:47,045 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:11:47,322 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:12:12,990 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:12:13,001 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:12:54,869 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:15:48,735 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:15:48,938 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:15:49,046 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:16:05,782 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:16:05,792 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:18:36,835 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:18:37,147 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:19:02,434 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:22:02,304 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:22:05,002 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:22:16,069 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:22:16,073 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:22:21,557 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:22:44,672 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:22:44,676 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:22:51,214 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:23:05,991 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:23:07,280 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:25:57,096 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:25:57,098 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:26:02,282 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:26:09,727 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:26:09,729 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:26:15,212 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 18:33:10,267 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:33:10,269 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:51:29,098 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:51:29,101 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:53:02,377 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:53:02,380 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:55:29,217 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 18:55:29,219 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 18:58:43,992 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 19:02:51,873 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 19:02:51,874 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 19:07:37,063 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 19:14:42,905 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 19:14:42,909 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 19:17:15,427 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 19:17:15,430 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 19:30:21,685 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 19:30:21,693 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 19:32:19,512 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 19:32:19,655 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 19:35:49,419 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 19:35:49,569 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 20:01:19,959 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 20:01:21,554 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 20:01:21,554 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 20:05:11,430 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 20:05:11,447 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 20:11:05,738 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 20:11:05,744 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 20:16:50,846 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 20:16:50,944 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 20:22:33,119 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 20:22:33,120 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 20:33:31,788 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 20:33:31,798 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 20:35:47,159 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 20:35:47,165 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 20:43:06,372 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 20:43:06,374 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 21:15:55,558 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 21:19:53,286 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 21:19:53,287 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 21:20:47,742 DEBUG fetch_aal_data SQL for provinsi=BENGKULU
+2025-05-06 21:20:55,679 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 21:31:41,307 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 21:31:43,917 DEBUG fetch_geojson SQL:
+
+        SELECT json_build_object(
+          'type', 'FeatureCollection',
+          'features', COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type', 'Feature',
+            'geometry', ST_AsGeoJSON(b.geom)::json,
+            'properties',
+              -- drop geom, provinsi, kota then re-add non-null
+              (to_jsonb(b)
+                 - 'geom'
+                 - 'provinsi'
+                 - 'kota'
+              )
+              || jsonb_build_object(
+                   'provinsi', COALESCE(b.provinsi, ''),
+                   'kota',    COALESCE(b.kota, '')
+                 )
+              || to_jsonb(d)
+          ) AS f
+          FROM bangunan_copy b
+          JOIN hasil_proses_directloss d USING(id_bangunan)
+          WHERE 1=1 AND TRIM(LOWER(b.provinsi)) = TRIM(LOWER(:provinsi)) AND TRIM(LOWER(b.kota)) = TRIM(LOWER(:kota))
+        ) sub;
+        
+2025-05-06 21:32:18,638 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 21:32:18,643 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 21:35:23,271 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 21:35:23,274 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        
+2025-05-06 21:36:14,169 DEBUG fetch_aal_geojson SQL:
+
+        SELECT json_build_object(
+          'type',       'FeatureCollection',
+          'features',   COALESCE(json_agg(f), '[]'::json)
+        ) AS geojson
+        FROM (
+          SELECT json_build_object(
+            'type',     'Feature',
+            'geometry', ST_AsGeoJSON(p.geom)::json,
+            'properties', to_jsonb(hap)
+          ) AS f
+          FROM hasil_aal_provinsi hap
+          JOIN provinsi p
+            ON TRIM(LOWER(p.provinsi)) = TRIM(LOWER(hap.provinsi))
+          WHERE 1=1
+        ) sub;
+        
+2025-05-06 21:36:14,174 DEBUG fetch_aal_provinsi_list SQL:
+
+        SELECT provinsi
+        FROM hasil_aal_provinsi
+        WHERE provinsi IS NOT NULL AND provinsi <> ''
+        ORDER BY provinsi
+        

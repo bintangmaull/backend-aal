@@ -74,7 +74,7 @@ def download_directloss():
         b.taxonomy,
         b.jumlah_lantai,
         d.*
-      FROM bangunan b
+      FROM bangunan_copy b
       JOIN hasil_proses_directloss d USING (id_bangunan)
     ) TO STDOUT WITH CSV HEADER
     """

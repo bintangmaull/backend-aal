@@ -30,7 +30,7 @@ def get_bangunan_data():
             b.kota,
             b.jumlah_lantai,
             COALESCE(k.hsbgn, 0.0) AS hsbgn
-        FROM bangunan b
+        FROM bangunan_copy b
         LEFT JOIN kota k
           ON b.kota = k.kota;
     """)
@@ -119,7 +119,7 @@ def get_all_disaster_data():
                 SELECT
                   b.id_bangunan,
                   {col_list}
-                FROM bangunan b
+                FROM bangunan_copy b
                 LEFT JOIN LATERAL (
                     SELECT id_lokasi
                     FROM {raw_table} r

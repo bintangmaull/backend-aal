@@ -64,9 +64,9 @@ class BangunanController:
             return jsonify({"error": "Terjadi kesalahan server"}), 500
 
     @staticmethod
-    def delete(bangunan_id):
+    def delete(bangunan_id, prov):
         try:
-            ok = BangunanService.delete_bangunan(bangunan_id)
+            ok = BangunanService.delete_bangunan(bangunan_id, prov)
             if ok:
                 return jsonify({"message": "Bangunan berhasil dihapus"}), 200
             return jsonify({"error": "Bangunan tidak ditemukan"}), 404
@@ -108,20 +108,6 @@ class BangunanController:
             return jsonify([]), 500
 
     @staticmethod
-    def get_kota_list_by_provinsi(provinsi):
-        """
-        GET /api/bangunan/provinsi/<provinsi>/kota
-        Mengambil daftar kota unik berdasarkan path-param provinsi.
-        """
-        try:
-            all_data = BangunanService.get_all_bangunan()
-            kotas = sorted({item['kota'] for item in all_data if item['provinsi'] == provinsi})
-            return jsonify(kotas), 200
-        except Exception as e:
-            logger.error(f"Error get_kota_list_by_provinsi({provinsi}): {e}")
-            return jsonify([]), 500
-
-    @staticmethod
     def upload_csv():
         """
         POST /api/bangunan/upload
@@ -140,9 +126,28 @@ class BangunanController:
             return jsonify(result), 200
 
         except ValueError as ve:
+            # Kesalahan validasi atau parsing CSV
             logger.error("Error upload CSV (ValueError): %s", ve)
             return jsonify({"error": str(ve)}), 400
 
         except Exception as e:
+            # Kesalahan tak terduga
             logger.exception("Exception saat processing CSV upload")
             return jsonify({"error": "Terjadi kesalahan server saat upload CSV"}), 500
+
+    @staticmethod
+    def recalc(bangunan_id):
+        """
+        POST /api/bangunan/<id>/recalc
+        Hitung ulang directloss & AAL hanya untuk bangunan ini.
+        """
+        try:
+            # service_crud_bangunan harus memiliki metode recalc_building
+            result = BangunanService.recalc_building_directloss_and_aal(bangunan_id)
+            return jsonify({"status": "success", "detail": result}), 200
+        except ValueError as ve:
+            logger.error(f"Error recalc (ValueError): {ve}")
+            return jsonify({"error": str(ve)}), 400
+        except Exception as e:
+            logger.error(f"Error recalc bangunan: {e}")
+            return jsonify({"error": "Terjadi kesalahan perhitungan ulang"}), 500

@@ -21,7 +21,7 @@ bangunan_bp.add_url_rule(
     methods=["PUT"]
 )
 bangunan_bp.add_url_rule(
-    "/bangunan/<string:bangunan_id>",
+    "/bangunan/<string:bangunan_id>/<string:prov>",
     view_func=BangunanController.delete,
     methods=["DELETE"]
 )
@@ -41,5 +41,12 @@ bangunan_bp.add_url_rule(
 bangunan_bp.add_url_rule(
     "/bangunan/upload",
     view_func=BangunanController.upload_csv,
+    methods=["POST"]
+)
+
+# Recalc directloss & AAL untuk satu bangunan
+bangunan_bp.add_url_rule(
+    "/bangunan/<string:bangunan_id>/recalc",
+    view_func=BangunanController.recalc,
     methods=["POST"]
 )

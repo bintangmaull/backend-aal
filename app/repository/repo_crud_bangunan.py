@@ -5,10 +5,18 @@ from app.models.models_database import Bangunan
 from app.extensions import db
 
 class BangunanRepository:
-    # Daftar kolom non-geom untuk SELECT
+    # Daftar kolom non-geom untuk SELECT — ditambahkan jumlah_lantai
     _fields = [
-        "id_bangunan", "lon", "lat", "taxonomy",
-        "luas", "nama_gedung", "alamat", "kota", "provinsi"
+        "id_bangunan",
+        "lon",
+        "lat",
+        "taxonomy",
+        "luas",
+        "jumlah_lantai",    # ← baru
+        "nama_gedung",
+        "alamat",
+        "kota",
+        "provinsi"
     ]
     _columns = [getattr(Bangunan, f) for f in _fields]
 
