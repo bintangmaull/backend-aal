@@ -854,3 +854,302 @@ DETAIL:  Key (id_bangunan)=(FD_46895) already exists.
 2025-05-06 21:31:30,885 DEBUG ✅ DirectLoss updated for BMN_1746541717721
 2025-05-06 21:31:30,916 INFO ✅ AAL incremental updated for provinsi JAWA BARAT
 2025-05-06 21:31:30,917 DEBUG === END incremental recalc for BMN_1746541717721 ===
+2025-05-06 22:03:19,793 DEBUG === START process_all_disasters ===
+2025-05-06 22:03:19,799 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 22:03:23,257 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 22:03:23,980 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 22:06:10,755 DEBUG 📥 gempa: 281486 rows
+2025-05-06 22:06:10,805 DEBUG 📥 banjir: 281486 rows
+2025-05-06 22:06:10,862 DEBUG 📥 longsor: 281486 rows
+2025-05-06 22:06:10,913 DEBUG 📥 gunungberapi: 281486 rows
+2025-05-06 22:17:10,169 DEBUG === START process_all_disasters ===
+2025-05-06 22:17:10,176 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 22:17:14,741 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 22:17:15,532 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 22:20:01,578 DEBUG 📥 gempa: aligned to 285331 rows
+2025-05-06 22:20:01,819 DEBUG 📥 banjir: aligned to 285331 rows
+2025-05-06 22:20:02,023 DEBUG 📥 longsor: aligned to 285331 rows
+2025-05-06 22:20:02,265 DEBUG 📥 gunungberapi: aligned to 285331 rows
+2025-05-06 22:20:02,311 DEBUG direct_loss_gempa_500 sample: [1469400000.0, 900600000.0, 136290000.0]
+2025-05-06 22:20:02,327 DEBUG direct_loss_gempa_250 sample: [1154524650.9442492, 707611882.8367978, 103134391.55081388]
+2025-05-06 22:20:02,341 DEBUG direct_loss_gempa_100 sample: [418169824.6674698, 256297634.47361052, 34367684.676562935]
+2025-05-06 22:20:02,356 DEBUG direct_loss_banjir_100 sample: [145537932.9713232, 89200668.59532711, 13749875.619511537]
+2025-05-06 22:20:02,365 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-06 22:20:02,377 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-06 22:20:02,397 DEBUG direct_loss_longsor_5 sample: [1425670216.2102168, 873797874.4514232, 131514179.07633059]
+2025-05-06 22:20:02,418 DEBUG direct_loss_longsor_2 sample: [1008651006.9488146, 618205455.8718541, 91144461.48856436]
+2025-05-06 22:20:02,434 DEBUG direct_loss_gunungberapi_250 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:20:02,448 DEBUG direct_loss_gunungberapi_100 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:20:02,464 DEBUG direct_loss_gunungberapi_50 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:20:23,663 ERROR ❌ Saving Direct Loss failed: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "hasil_proses_directloss_pkey"
+DETAIL:  Key (id_bangunan)=(BMN_25747) already exists.
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, d ... 395659 characters truncated ... (direct_loss_gunungberapi_50__999)s, %(direct_loss_longsor_5__999)s, %(direct_loss_longsor_2__999)s)]
+[parameters: {'direct_loss_gunungberapi_250__0': 385814041.5353136, 'direct_loss_gunungberapi_50__0': 385814041.5353136, 'direct_loss_gunungberapi_100__0': 385814041.5353136, 'direct_loss_gempa_500__0': 3808763482.0, 'direct_loss_banjir_100__0': 0.0, 'direct_loss_gempa_250__0': 3798957452.2011676, 'direct_loss_gempa_100__0': 3808763482.0, 'direct_loss_banjir_25__0': 0.0, 'direct_loss_banjir_50__0': 0.0, 'direct_loss_longsor_2__0': 3808763482.0, 'direct_loss_longsor_5__0': 3808763482.0, 'id_bangunan__0': 'FD_76636', 'direct_loss_gunungberapi_250__1': 48622273.55732416, 'direct_loss_gunungberapi_50__1': 48622273.55732416, 'direct_loss_gunungberapi_100__1': 48622273.55732416, 'direct_loss_gempa_500__1': 480000000.0, 'direct_loss_banjir_100__1': 191879450.0741024, 'direct_loss_gempa_250__1': 476028586.3875475, 'direct_loss_gempa_100__1': 480000000.0, 'direct_loss_banjir_25__1': 129387792.64631948, 'direct_loss_banjir_50__1': 0.0, 'direct_loss_longsor_2__1': 480000000.0, 'direct_loss_longsor_5__1': 480000000.0, 'id_bangunan__1': 'BMN_95171', 'direct_loss_gunungberapi_250__2': 54700057.751989685, 'direct_loss_gunungberapi_50__2': 54700057.751989685, 'direct_loss_gunungberapi_100__2': 54700057.751989685, 'direct_loss_gempa_500__2': 540000000.0, 'direct_loss_banjir_100__2': 0.0, 'direct_loss_gempa_250__2': 539534600.2993207, 'direct_loss_gempa_100__2': 540000000.0, 'direct_loss_banjir_25__2': 0.0, 'direct_loss_banjir_50__2': 52944811.15196101, 'direct_loss_longsor_2__2': 540000000.0, 'direct_loss_longsor_5__2': 540000000.0, 'id_bangunan__2': 'BMN_74852', 'direct_loss_gunungberapi_250__3': 393232637.3948592, 'direct_loss_gunungberapi_50__3': 393232637.3948592, 'direct_loss_gunungberapi_100__3': 393232637.3948592, 'direct_loss_gempa_500__3': 3113790613.1415153, 'direct_loss_banjir_100__3': 0.0, 'direct_loss_gempa_250__3': 1054285761.4260584, 'direct_loss_gempa_100__3': 300387199.8799023, 'direct_loss_banjir_25__3': 0.0, 'direct_loss_banjir_50__3': 0.0, 'direct_loss_longsor_2__3': 1584678176.9274662, 'direct_loss_longsor_5__3': 2704975176.558578, 'id_bangunan__3': 'FD_31264', 'direct_loss_gunungberapi_250__4': 393232637.3948592, 'direct_loss_gunungberapi_50__4': 393232637.3948592 ... 11900 parameters truncated ... 'direct_loss_longsor_5__995': 475200000.0, 'id_bangunan__995': 'BMN_32676', 'direct_loss_gunungberapi_250__996': 139991629.28379583, 'direct_loss_gunungberapi_50__996': 139991629.28379583, 'direct_loss_gunungberapi_100__996': 139991629.28379583, 'direct_loss_gempa_500__996': 1382000000.0, 'direct_loss_banjir_100__996': 105606582.00390404, 'direct_loss_gempa_250__996': 1382000000.0, 'direct_loss_gempa_100__996': 1368340482.7084668, 'direct_loss_banjir_25__996': 0.0, 'direct_loss_banjir_50__996': 0.0, 'direct_loss_longsor_2__996': 1382000000.0, 'direct_loss_longsor_5__996': 1382000000.0, 'id_bangunan__996': 'BMN_77940', 'direct_loss_gunungberapi_250__997': 48997070.24932854, 'direct_loss_gunungberapi_50__997': 48997070.24932854, 'direct_loss_gunungberapi_100__997': 48997070.24932854, 'direct_loss_gempa_500__997': 483700000.0, 'direct_loss_banjir_100__997': 36962303.70136642, 'direct_loss_gempa_250__997': 483700000.0, 'direct_loss_gempa_100__997': 478919168.94796336, 'direct_loss_banjir_25__997': 0.0, 'direct_loss_banjir_50__997': 0.0, 'direct_loss_longsor_2__997': 483700000.0, 'direct_loss_longsor_5__997': 483700000.0, 'id_bangunan__997': 'BMN_111467', 'direct_loss_gunungberapi_250__998': 393232637.3948592, 'direct_loss_gunungberapi_50__998': 393232637.3948592, 'direct_loss_gunungberapi_100__998': 393232637.3948592, 'direct_loss_gempa_500__998': 2982749812.2957673, 'direct_loss_banjir_100__998': 0.0, 'direct_loss_gempa_250__998': 823760637.8892441, 'direct_loss_gempa_100__998': 222253516.42853984, 'direct_loss_banjir_25__998': 0.0, 'direct_loss_banjir_50__998': 0.0, 'direct_loss_longsor_2__998': 1445778728.481362, 'direct_loss_longsor_5__998': 2623297184.3034487, 'id_bangunan__998': 'FD_31173', 'direct_loss_gunungberapi_250__999': 0.0, 'direct_loss_gunungberapi_50__999': 0.0, 'direct_loss_gunungberapi_100__999': 0.0, 'direct_loss_gempa_500__999': 0.0, 'direct_loss_banjir_100__999': 0.0, 'direct_loss_gempa_250__999': 0.0, 'direct_loss_gempa_100__999': 0.0, 'direct_loss_banjir_25__999': 0.0, 'direct_loss_banjir_50__999': 0.0, 'direct_loss_longsor_2__999': 0.0, 'direct_loss_longsor_5__999': 0.0, 'id_bangunan__999': 'FD_95401'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-06 22:21:44,768 DEBUG === START process_all_disasters ===
+2025-05-06 22:21:44,771 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 22:21:49,546 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 22:21:50,053 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 22:24:40,544 DEBUG 📥 gempa: aligned to 285331 rows
+2025-05-06 22:24:40,758 DEBUG 📥 banjir: aligned to 285331 rows
+2025-05-06 22:24:40,932 DEBUG 📥 longsor: aligned to 285331 rows
+2025-05-06 22:24:41,134 DEBUG 📥 gunungberapi: aligned to 285331 rows
+2025-05-06 22:24:41,162 DEBUG direct_loss_gempa_500 sample: [1469400000.0, 900600000.0, 136290000.0]
+2025-05-06 22:24:41,177 DEBUG direct_loss_gempa_250 sample: [1154524650.9442492, 707611882.8367978, 103134391.55081388]
+2025-05-06 22:24:41,191 DEBUG direct_loss_gempa_100 sample: [418169824.6674698, 256297634.47361052, 34367684.676562935]
+2025-05-06 22:24:41,201 DEBUG direct_loss_banjir_100 sample: [145537932.9713232, 89200668.59532711, 13749875.619511537]
+2025-05-06 22:24:41,208 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-06 22:24:41,219 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-06 22:24:41,232 DEBUG direct_loss_longsor_5 sample: [1425670216.2102168, 873797874.4514232, 131514179.07633059]
+2025-05-06 22:24:41,245 DEBUG direct_loss_longsor_2 sample: [1008651006.9488146, 618205455.8718541, 91144461.48856436]
+2025-05-06 22:24:41,260 DEBUG direct_loss_gunungberapi_250 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:24:41,279 DEBUG direct_loss_gunungberapi_100 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:24:41,293 DEBUG direct_loss_gunungberapi_50 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:25:02,471 ERROR ❌ Saving Direct Loss failed: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "hasil_proses_directloss_pkey"
+DETAIL:  Key (id_bangunan)=(BMN_25747) already exists.
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, d ... 395659 characters truncated ... (direct_loss_gunungberapi_50__999)s, %(direct_loss_longsor_5__999)s, %(direct_loss_longsor_2__999)s)]
+[parameters: {'direct_loss_gunungberapi_250__0': 385814041.5353136, 'direct_loss_gunungberapi_50__0': 385814041.5353136, 'direct_loss_gunungberapi_100__0': 385814041.5353136, 'direct_loss_gempa_500__0': 3808763482.0, 'direct_loss_banjir_100__0': 0.0, 'direct_loss_gempa_250__0': 3798957452.2011676, 'direct_loss_gempa_100__0': 3808763482.0, 'direct_loss_banjir_25__0': 0.0, 'direct_loss_banjir_50__0': 0.0, 'direct_loss_longsor_2__0': 3808763482.0, 'direct_loss_longsor_5__0': 3808763482.0, 'id_bangunan__0': 'FD_76636', 'direct_loss_gunungberapi_250__1': 48622273.55732416, 'direct_loss_gunungberapi_50__1': 48622273.55732416, 'direct_loss_gunungberapi_100__1': 48622273.55732416, 'direct_loss_gempa_500__1': 480000000.0, 'direct_loss_banjir_100__1': 191879450.0741024, 'direct_loss_gempa_250__1': 476028586.3875475, 'direct_loss_gempa_100__1': 480000000.0, 'direct_loss_banjir_25__1': 129387792.64631948, 'direct_loss_banjir_50__1': 0.0, 'direct_loss_longsor_2__1': 480000000.0, 'direct_loss_longsor_5__1': 480000000.0, 'id_bangunan__1': 'BMN_95171', 'direct_loss_gunungberapi_250__2': 54700057.751989685, 'direct_loss_gunungberapi_50__2': 54700057.751989685, 'direct_loss_gunungberapi_100__2': 54700057.751989685, 'direct_loss_gempa_500__2': 540000000.0, 'direct_loss_banjir_100__2': 0.0, 'direct_loss_gempa_250__2': 539534600.2993207, 'direct_loss_gempa_100__2': 540000000.0, 'direct_loss_banjir_25__2': 0.0, 'direct_loss_banjir_50__2': 52944811.15196101, 'direct_loss_longsor_2__2': 540000000.0, 'direct_loss_longsor_5__2': 540000000.0, 'id_bangunan__2': 'BMN_74852', 'direct_loss_gunungberapi_250__3': 393232637.3948592, 'direct_loss_gunungberapi_50__3': 393232637.3948592, 'direct_loss_gunungberapi_100__3': 393232637.3948592, 'direct_loss_gempa_500__3': 3113790613.1415153, 'direct_loss_banjir_100__3': 0.0, 'direct_loss_gempa_250__3': 1054285761.4260584, 'direct_loss_gempa_100__3': 300387199.8799023, 'direct_loss_banjir_25__3': 0.0, 'direct_loss_banjir_50__3': 0.0, 'direct_loss_longsor_2__3': 1584678176.9274662, 'direct_loss_longsor_5__3': 2704975176.558578, 'id_bangunan__3': 'FD_31264', 'direct_loss_gunungberapi_250__4': 393232637.3948592, 'direct_loss_gunungberapi_50__4': 393232637.3948592 ... 11900 parameters truncated ... 'direct_loss_longsor_5__995': 475200000.0, 'id_bangunan__995': 'BMN_32676', 'direct_loss_gunungberapi_250__996': 139991629.28379583, 'direct_loss_gunungberapi_50__996': 139991629.28379583, 'direct_loss_gunungberapi_100__996': 139991629.28379583, 'direct_loss_gempa_500__996': 1382000000.0, 'direct_loss_banjir_100__996': 105606582.00390404, 'direct_loss_gempa_250__996': 1382000000.0, 'direct_loss_gempa_100__996': 1368340482.7084668, 'direct_loss_banjir_25__996': 0.0, 'direct_loss_banjir_50__996': 0.0, 'direct_loss_longsor_2__996': 1382000000.0, 'direct_loss_longsor_5__996': 1382000000.0, 'id_bangunan__996': 'BMN_77940', 'direct_loss_gunungberapi_250__997': 48997070.24932854, 'direct_loss_gunungberapi_50__997': 48997070.24932854, 'direct_loss_gunungberapi_100__997': 48997070.24932854, 'direct_loss_gempa_500__997': 483700000.0, 'direct_loss_banjir_100__997': 36962303.70136642, 'direct_loss_gempa_250__997': 483700000.0, 'direct_loss_gempa_100__997': 478919168.94796336, 'direct_loss_banjir_25__997': 0.0, 'direct_loss_banjir_50__997': 0.0, 'direct_loss_longsor_2__997': 483700000.0, 'direct_loss_longsor_5__997': 483700000.0, 'id_bangunan__997': 'BMN_111467', 'direct_loss_gunungberapi_250__998': 393232637.3948592, 'direct_loss_gunungberapi_50__998': 393232637.3948592, 'direct_loss_gunungberapi_100__998': 393232637.3948592, 'direct_loss_gempa_500__998': 2982749812.2957673, 'direct_loss_banjir_100__998': 0.0, 'direct_loss_gempa_250__998': 823760637.8892441, 'direct_loss_gempa_100__998': 222253516.42853984, 'direct_loss_banjir_25__998': 0.0, 'direct_loss_banjir_50__998': 0.0, 'direct_loss_longsor_2__998': 1445778728.481362, 'direct_loss_longsor_5__998': 2623297184.3034487, 'id_bangunan__998': 'FD_31173', 'direct_loss_gunungberapi_250__999': 0.0, 'direct_loss_gunungberapi_50__999': 0.0, 'direct_loss_gunungberapi_100__999': 0.0, 'direct_loss_gempa_500__999': 0.0, 'direct_loss_banjir_100__999': 0.0, 'direct_loss_gempa_250__999': 0.0, 'direct_loss_gempa_100__999': 0.0, 'direct_loss_banjir_25__999': 0.0, 'direct_loss_banjir_50__999': 0.0, 'direct_loss_longsor_2__999': 0.0, 'direct_loss_longsor_5__999': 0.0, 'id_bangunan__999': 'FD_95401'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-06 22:26:22,440 DEBUG === START process_all_disasters ===
+2025-05-06 22:26:22,451 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 22:26:26,082 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 22:26:26,633 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 22:28:49,357 DEBUG 📥 gempa: aligned to 285331 rows
+2025-05-06 22:28:49,553 DEBUG 📥 banjir: aligned to 285331 rows
+2025-05-06 22:28:49,766 DEBUG 📥 longsor: aligned to 285331 rows
+2025-05-06 22:28:50,006 DEBUG 📥 gunungberapi: aligned to 285331 rows
+2025-05-06 22:28:50,053 DEBUG direct_loss_gempa_500 sample: [1469400000.0, 900600000.0, 136290000.0]
+2025-05-06 22:28:50,071 DEBUG direct_loss_gempa_250 sample: [1154524650.9442492, 707611882.8367978, 103134391.55081388]
+2025-05-06 22:28:50,084 DEBUG direct_loss_gempa_100 sample: [418169824.6674698, 256297634.47361052, 34367684.676562935]
+2025-05-06 22:28:50,092 DEBUG direct_loss_banjir_100 sample: [145537932.9713232, 89200668.59532711, 13749875.619511537]
+2025-05-06 22:28:50,102 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-06 22:28:50,111 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-06 22:28:50,128 DEBUG direct_loss_longsor_5 sample: [1425670216.2102168, 873797874.4514232, 131514179.07633059]
+2025-05-06 22:28:50,141 DEBUG direct_loss_longsor_2 sample: [1008651006.9488146, 618205455.8718541, 91144461.48856436]
+2025-05-06 22:28:50,157 DEBUG direct_loss_gunungberapi_250 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:28:50,174 DEBUG direct_loss_gunungberapi_100 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:28:50,191 DEBUG direct_loss_gunungberapi_50 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:29:10,104 ERROR ❌ Saving Direct Loss failed: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "hasil_proses_directloss_pkey"
+DETAIL:  Key (id_bangunan)=(BMN_25747) already exists.
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, d ... 395659 characters truncated ... (direct_loss_gunungberapi_50__999)s, %(direct_loss_longsor_5__999)s, %(direct_loss_longsor_2__999)s)]
+[parameters: {'direct_loss_banjir_25__0': 0.0, 'direct_loss_gunungberapi_100__0': 385814041.5353136, 'direct_loss_gempa_500__0': 3808763482.0, 'direct_loss_gunungberapi_50__0': 385814041.5353136, 'direct_loss_longsor_5__0': 3808763482.0, 'direct_loss_gunungberapi_250__0': 385814041.5353136, 'direct_loss_longsor_2__0': 3808763482.0, 'direct_loss_banjir_100__0': 0.0, 'direct_loss_gempa_100__0': 3808763482.0, 'id_bangunan__0': 'FD_76636', 'direct_loss_banjir_50__0': 0.0, 'direct_loss_gempa_250__0': 3798957452.2011676, 'direct_loss_banjir_25__1': 129387792.64631948, 'direct_loss_gunungberapi_100__1': 48622273.55732416, 'direct_loss_gempa_500__1': 480000000.0, 'direct_loss_gunungberapi_50__1': 48622273.55732416, 'direct_loss_longsor_5__1': 480000000.0, 'direct_loss_gunungberapi_250__1': 48622273.55732416, 'direct_loss_longsor_2__1': 480000000.0, 'direct_loss_banjir_100__1': 191879450.0741024, 'direct_loss_gempa_100__1': 480000000.0, 'id_bangunan__1': 'BMN_95171', 'direct_loss_banjir_50__1': 0.0, 'direct_loss_gempa_250__1': 476028586.3875475, 'direct_loss_banjir_25__2': 0.0, 'direct_loss_gunungberapi_100__2': 54700057.751989685, 'direct_loss_gempa_500__2': 540000000.0, 'direct_loss_gunungberapi_50__2': 54700057.751989685, 'direct_loss_longsor_5__2': 540000000.0, 'direct_loss_gunungberapi_250__2': 54700057.751989685, 'direct_loss_longsor_2__2': 540000000.0, 'direct_loss_banjir_100__2': 0.0, 'direct_loss_gempa_100__2': 540000000.0, 'id_bangunan__2': 'BMN_74852', 'direct_loss_banjir_50__2': 52944811.15196101, 'direct_loss_gempa_250__2': 539534600.2993207, 'direct_loss_banjir_25__3': 0.0, 'direct_loss_gunungberapi_100__3': 393232637.3948592, 'direct_loss_gempa_500__3': 3113790613.1415153, 'direct_loss_gunungberapi_50__3': 393232637.3948592, 'direct_loss_longsor_5__3': 2704975176.558578, 'direct_loss_gunungberapi_250__3': 393232637.3948592, 'direct_loss_longsor_2__3': 1584678176.9274662, 'direct_loss_banjir_100__3': 0.0, 'direct_loss_gempa_100__3': 300387199.8799023, 'id_bangunan__3': 'FD_31264', 'direct_loss_banjir_50__3': 0.0, 'direct_loss_gempa_250__3': 1054285761.4260584, 'direct_loss_banjir_25__4': 0.0, 'direct_loss_gunungberapi_100__4': 393232637.3948592 ... 11900 parameters truncated ... 'direct_loss_banjir_50__995': 0.0, 'direct_loss_gempa_250__995': 473411848.03254604, 'direct_loss_banjir_25__996': 0.0, 'direct_loss_gunungberapi_100__996': 139991629.28379583, 'direct_loss_gempa_500__996': 1382000000.0, 'direct_loss_gunungberapi_50__996': 139991629.28379583, 'direct_loss_longsor_5__996': 1382000000.0, 'direct_loss_gunungberapi_250__996': 139991629.28379583, 'direct_loss_longsor_2__996': 1382000000.0, 'direct_loss_banjir_100__996': 105606582.00390404, 'direct_loss_gempa_100__996': 1368340482.7084668, 'id_bangunan__996': 'BMN_77940', 'direct_loss_banjir_50__996': 0.0, 'direct_loss_gempa_250__996': 1382000000.0, 'direct_loss_banjir_25__997': 0.0, 'direct_loss_gunungberapi_100__997': 48997070.24932854, 'direct_loss_gempa_500__997': 483700000.0, 'direct_loss_gunungberapi_50__997': 48997070.24932854, 'direct_loss_longsor_5__997': 483700000.0, 'direct_loss_gunungberapi_250__997': 48997070.24932854, 'direct_loss_longsor_2__997': 483700000.0, 'direct_loss_banjir_100__997': 36962303.70136642, 'direct_loss_gempa_100__997': 478919168.94796336, 'id_bangunan__997': 'BMN_111467', 'direct_loss_banjir_50__997': 0.0, 'direct_loss_gempa_250__997': 483700000.0, 'direct_loss_banjir_25__998': 0.0, 'direct_loss_gunungberapi_100__998': 393232637.3948592, 'direct_loss_gempa_500__998': 2982749812.2957673, 'direct_loss_gunungberapi_50__998': 393232637.3948592, 'direct_loss_longsor_5__998': 2623297184.3034487, 'direct_loss_gunungberapi_250__998': 393232637.3948592, 'direct_loss_longsor_2__998': 1445778728.481362, 'direct_loss_banjir_100__998': 0.0, 'direct_loss_gempa_100__998': 222253516.42853984, 'id_bangunan__998': 'FD_31173', 'direct_loss_banjir_50__998': 0.0, 'direct_loss_gempa_250__998': 823760637.8892441, 'direct_loss_banjir_25__999': 0.0, 'direct_loss_gunungberapi_100__999': 0.0, 'direct_loss_gempa_500__999': 0.0, 'direct_loss_gunungberapi_50__999': 0.0, 'direct_loss_longsor_5__999': 0.0, 'direct_loss_gunungberapi_250__999': 0.0, 'direct_loss_longsor_2__999': 0.0, 'direct_loss_banjir_100__999': 0.0, 'direct_loss_gempa_100__999': 0.0, 'id_bangunan__999': 'FD_95401', 'direct_loss_banjir_50__999': 0.0, 'direct_loss_gempa_250__999': 0.0}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-06 22:35:40,716 DEBUG === START process_all_disasters ===
+2025-05-06 22:35:40,724 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 22:35:45,037 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 22:35:45,633 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 22:38:29,528 DEBUG 📥 gempa: 281486 rows
+2025-05-06 22:38:29,582 DEBUG 📥 banjir: 281486 rows
+2025-05-06 22:38:29,636 DEBUG 📥 longsor: 281486 rows
+2025-05-06 22:38:29,686 DEBUG 📥 gunungberapi: 281486 rows
+2025-05-06 22:42:33,162 DEBUG === START process_all_disasters ===
+2025-05-06 22:42:33,168 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 22:42:36,623 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 22:42:37,212 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 22:45:20,274 DEBUG 📥 gempa: aligned to 285331 rows
+2025-05-06 22:45:20,495 DEBUG 📥 banjir: aligned to 285331 rows
+2025-05-06 22:45:20,702 DEBUG 📥 longsor: aligned to 285331 rows
+2025-05-06 22:45:20,912 DEBUG 📥 gunungberapi: aligned to 285331 rows
+2025-05-06 22:45:20,955 DEBUG direct_loss_gempa_500 sample: [1469400000.0, 900600000.0, 136290000.0]
+2025-05-06 22:45:20,967 DEBUG direct_loss_gempa_250 sample: [1154524650.9442492, 707611882.8367978, 103134391.55081388]
+2025-05-06 22:45:20,979 DEBUG direct_loss_gempa_100 sample: [418169824.6674698, 256297634.47361052, 34367684.676562935]
+2025-05-06 22:45:20,987 DEBUG direct_loss_banjir_100 sample: [145537932.9713232, 89200668.59532711, 13749875.619511537]
+2025-05-06 22:45:20,995 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-06 22:45:21,003 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-06 22:45:21,015 DEBUG direct_loss_longsor_5 sample: [1425670216.2102168, 873797874.4514232, 131514179.07633059]
+2025-05-06 22:45:21,027 DEBUG direct_loss_longsor_2 sample: [1008651006.9488146, 618205455.8718541, 91144461.48856436]
+2025-05-06 22:45:21,041 DEBUG direct_loss_gunungberapi_250 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:45:21,054 DEBUG direct_loss_gunungberapi_100 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:45:21,067 DEBUG direct_loss_gunungberapi_50 sample: [148844934.9273586, 91227540.76192947, 13805686.798182731]
+2025-05-06 22:45:42,998 ERROR ❌ Saving Direct Loss failed: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "hasil_proses_directloss_pkey"
+DETAIL:  Key (id_bangunan)=(BMN_25747) already exists.
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, d ... 395659 characters truncated ... (direct_loss_gunungberapi_50__999)s, %(direct_loss_longsor_5__999)s, %(direct_loss_longsor_2__999)s)]
+[parameters: {'direct_loss_gunungberapi_100__0': 385814041.5353136, 'direct_loss_gempa_500__0': 3808763482.0, 'direct_loss_longsor_2__0': 3808763482.0, 'direct_loss_gunungberapi_250__0': 385814041.5353136, 'direct_loss_gempa_100__0': 3808763482.0, 'direct_loss_banjir_25__0': 0.0, 'direct_loss_gunungberapi_50__0': 385814041.5353136, 'direct_loss_banjir_100__0': 0.0, 'id_bangunan__0': 'FD_76636', 'direct_loss_longsor_5__0': 3808763482.0, 'direct_loss_banjir_50__0': 0.0, 'direct_loss_gempa_250__0': 3798957452.2011676, 'direct_loss_gunungberapi_100__1': 48622273.55732416, 'direct_loss_gempa_500__1': 480000000.0, 'direct_loss_longsor_2__1': 480000000.0, 'direct_loss_gunungberapi_250__1': 48622273.55732416, 'direct_loss_gempa_100__1': 480000000.0, 'direct_loss_banjir_25__1': 129387792.64631948, 'direct_loss_gunungberapi_50__1': 48622273.55732416, 'direct_loss_banjir_100__1': 191879450.0741024, 'id_bangunan__1': 'BMN_95171', 'direct_loss_longsor_5__1': 480000000.0, 'direct_loss_banjir_50__1': 0.0, 'direct_loss_gempa_250__1': 476028586.3875475, 'direct_loss_gunungberapi_100__2': 54700057.751989685, 'direct_loss_gempa_500__2': 540000000.0, 'direct_loss_longsor_2__2': 540000000.0, 'direct_loss_gunungberapi_250__2': 54700057.751989685, 'direct_loss_gempa_100__2': 540000000.0, 'direct_loss_banjir_25__2': 0.0, 'direct_loss_gunungberapi_50__2': 54700057.751989685, 'direct_loss_banjir_100__2': 0.0, 'id_bangunan__2': 'BMN_74852', 'direct_loss_longsor_5__2': 540000000.0, 'direct_loss_banjir_50__2': 52944811.15196101, 'direct_loss_gempa_250__2': 539534600.2993207, 'direct_loss_gunungberapi_100__3': 393232637.3948592, 'direct_loss_gempa_500__3': 3113790613.1415153, 'direct_loss_longsor_2__3': 1584678176.9274662, 'direct_loss_gunungberapi_250__3': 393232637.3948592, 'direct_loss_gempa_100__3': 300387199.8799023, 'direct_loss_banjir_25__3': 0.0, 'direct_loss_gunungberapi_50__3': 393232637.3948592, 'direct_loss_banjir_100__3': 0.0, 'id_bangunan__3': 'FD_31264', 'direct_loss_longsor_5__3': 2704975176.558578, 'direct_loss_banjir_50__3': 0.0, 'direct_loss_gempa_250__3': 1054285761.4260584, 'direct_loss_gunungberapi_100__4': 393232637.3948592, 'direct_loss_gempa_500__4': 3113790613.1415153 ... 11900 parameters truncated ... 'direct_loss_banjir_50__995': 0.0, 'direct_loss_gempa_250__995': 473411848.03254604, 'direct_loss_gunungberapi_100__996': 139991629.28379583, 'direct_loss_gempa_500__996': 1382000000.0, 'direct_loss_longsor_2__996': 1382000000.0, 'direct_loss_gunungberapi_250__996': 139991629.28379583, 'direct_loss_gempa_100__996': 1368340482.7084668, 'direct_loss_banjir_25__996': 0.0, 'direct_loss_gunungberapi_50__996': 139991629.28379583, 'direct_loss_banjir_100__996': 105606582.00390404, 'id_bangunan__996': 'BMN_77940', 'direct_loss_longsor_5__996': 1382000000.0, 'direct_loss_banjir_50__996': 0.0, 'direct_loss_gempa_250__996': 1382000000.0, 'direct_loss_gunungberapi_100__997': 48997070.24932854, 'direct_loss_gempa_500__997': 483700000.0, 'direct_loss_longsor_2__997': 483700000.0, 'direct_loss_gunungberapi_250__997': 48997070.24932854, 'direct_loss_gempa_100__997': 478919168.94796336, 'direct_loss_banjir_25__997': 0.0, 'direct_loss_gunungberapi_50__997': 48997070.24932854, 'direct_loss_banjir_100__997': 36962303.70136642, 'id_bangunan__997': 'BMN_111467', 'direct_loss_longsor_5__997': 483700000.0, 'direct_loss_banjir_50__997': 0.0, 'direct_loss_gempa_250__997': 483700000.0, 'direct_loss_gunungberapi_100__998': 393232637.3948592, 'direct_loss_gempa_500__998': 2982749812.2957673, 'direct_loss_longsor_2__998': 1445778728.481362, 'direct_loss_gunungberapi_250__998': 393232637.3948592, 'direct_loss_gempa_100__998': 222253516.42853984, 'direct_loss_banjir_25__998': 0.0, 'direct_loss_gunungberapi_50__998': 393232637.3948592, 'direct_loss_banjir_100__998': 0.0, 'id_bangunan__998': 'FD_31173', 'direct_loss_longsor_5__998': 2623297184.3034487, 'direct_loss_banjir_50__998': 0.0, 'direct_loss_gempa_250__998': 823760637.8892441, 'direct_loss_gunungberapi_100__999': 0.0, 'direct_loss_gempa_500__999': 0.0, 'direct_loss_longsor_2__999': 0.0, 'direct_loss_gunungberapi_250__999': 0.0, 'direct_loss_gempa_100__999': 0.0, 'direct_loss_banjir_25__999': 0.0, 'direct_loss_gunungberapi_50__999': 0.0, 'direct_loss_banjir_100__999': 0.0, 'id_bangunan__999': 'FD_95401', 'direct_loss_longsor_5__999': 0.0, 'direct_loss_banjir_50__999': 0.0, 'direct_loss_gempa_250__999': 0.0}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-06 23:05:41,493 DEBUG === START process_all_disasters ===
+2025-05-06 23:05:41,504 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 23:05:44,864 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 23:05:45,454 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 23:08:19,032 DEBUG 📥 gempa: 281486 rows
+2025-05-06 23:08:19,079 DEBUG 📥 banjir: 281486 rows
+2025-05-06 23:08:19,133 DEBUG 📥 longsor: 281486 rows
+2025-05-06 23:08:19,187 DEBUG 📥 gunungberapi: 281486 rows
+2025-05-06 23:23:41,753 DEBUG === START process_all_disasters ===
+2025-05-06 23:23:41,760 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 23:23:45,509 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 23:23:46,016 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 23:25:55,771 DEBUG 📥 gempa: 281486 rows
+2025-05-06 23:25:55,812 DEBUG 📥 banjir: 281486 rows
+2025-05-06 23:25:55,862 DEBUG 📥 longsor: 281486 rows
+2025-05-06 23:25:55,902 DEBUG 📥 gunungberapi: 281486 rows
+2025-05-06 23:26:14,971 DEBUG === START process_all_disasters ===
+2025-05-06 23:26:14,981 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 23:26:19,207 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 23:26:19,808 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 23:28:43,599 DEBUG 📥 gempa: 281486 rows
+2025-05-06 23:28:43,648 DEBUG 📥 banjir: 281486 rows
+2025-05-06 23:28:43,702 DEBUG 📥 longsor: 281486 rows
+2025-05-06 23:28:43,753 DEBUG 📥 gunungberapi: 281486 rows
+2025-05-06 23:32:35,221 DEBUG === START process_all_disasters ===
+2025-05-06 23:32:35,226 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-06 23:32:39,452 DEBUG 📥 Buildings: 285331 rows
+2025-05-06 23:32:40,030 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-06 23:38:17,252 DEBUG 📥 gempa: 281486 rows
+2025-05-06 23:38:17,301 DEBUG 📥 banjir: 281486 rows
+2025-05-06 23:38:17,356 DEBUG 📥 longsor: 281486 rows
+2025-05-06 23:38:17,432 DEBUG 📥 gunungberapi: 281486 rows
+2025-05-07 00:00:23,594 DEBUG === START process_all_disasters ===
+2025-05-07 00:00:23,613 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-07 00:00:27,975 DEBUG 📥 Buildings: 285331 rows
+2025-05-07 00:00:28,501 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-07 00:06:38,600 DEBUG 📥 gempa: 281486 rows
+2025-05-07 00:06:38,649 DEBUG 📥 banjir: 281486 rows
+2025-05-07 00:06:38,697 DEBUG 📥 longsor: 281486 rows
+2025-05-07 00:06:38,749 DEBUG 📥 gunungberapi: 281486 rows
+2025-05-07 08:20:36,611 DEBUG === START process_all_disasters ===
+2025-05-07 08:20:37,603 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-07 08:20:42,504 DEBUG 📥 Buildings: 284246 rows
+2025-05-07 08:20:43,238 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-07 08:23:49,078 DEBUG === START process_all_disasters ===
+2025-05-07 08:23:49,088 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-07 08:23:53,781 DEBUG 📥 Buildings: 284246 rows
+2025-05-07 08:23:54,401 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-07 08:25:39,331 DEBUG 📥 gempa: 284246 rows
+2025-05-07 08:25:39,394 DEBUG 📥 banjir: 284246 rows
+2025-05-07 08:25:39,457 DEBUG 📥 longsor: 284246 rows
+2025-05-07 08:25:39,495 DEBUG 📥 gunungberapi: 284246 rows
+2025-05-07 08:25:39,519 DEBUG direct_loss_gempa_500 sample: [3083128687.0440483, 3691997344.54877, 3121129445.764268]
+2025-05-07 08:25:39,534 DEBUG direct_loss_gempa_250 sample: [1314729828.9937413, 2169854666.702822, 1362958363.986853]
+2025-05-07 08:25:39,550 DEBUG direct_loss_gempa_100 sample: [401855212.1914699, 692347406.7921019, 416545950.98803115]
+2025-05-07 08:25:39,561 DEBUG direct_loss_banjir_100 sample: [82123347.06048861, 111349006.17821439, 0.0]
+2025-05-07 08:25:39,570 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-07 08:25:39,580 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-07 08:25:39,595 DEBUG direct_loss_longsor_5 sample: [2700169306.2585735, 3156323740.4227223, 2723793078.1262407]
+2025-05-07 08:25:39,618 DEBUG direct_loss_longsor_2 sample: [1749212626.1544218, 2195209979.7446575, 1775272263.0041904]
+2025-05-07 08:25:39,637 DEBUG direct_loss_gunungberapi_250 sample: [400839737.4532412, 400839737.4532412, 400839737.4532412]
+2025-05-07 08:25:39,653 DEBUG direct_loss_gunungberapi_100 sample: [400839737.4532412, 400839737.4532412, 400839737.4532412]
+2025-05-07 08:25:39,669 DEBUG direct_loss_gunungberapi_50 sample: [400839737.4532412, 400839737.4532412, 400839737.4532412]
+2025-05-07 08:25:59,021 ERROR ❌ Saving Direct Loss failed: (psycopg2.errors.ForeignKeyViolation) insert or update on table "hasil_proses_directloss" violates foreign key constraint "id_bangunan_fkey"
+DETAIL:  Key (id_bangunan)=(BMN_1746418892377) is not present in table "bangunan".
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, d ... 395659 characters truncated ... (direct_loss_gunungberapi_50__999)s, %(direct_loss_longsor_5__999)s, %(direct_loss_longsor_2__999)s)]
+[parameters: {'direct_loss_longsor_5__0': 13725000000.0, 'direct_loss_longsor_2__0': 13725000000.0, 'direct_loss_banjir_50__0': 0.0, 'direct_loss_gempa_250__0': 13725000000.0, 'direct_loss_banjir_25__0': 0.0, 'direct_loss_gunungberapi_250__0': 1390293134.529738, 'id_bangunan__0': 'FS_7813', 'direct_loss_gunungberapi_50__0': 1390293134.529738, 'direct_loss_gempa_100__0': 13725000000.0, 'direct_loss_banjir_100__0': 0.0, 'direct_loss_gempa_500__0': 13663044453.594358, 'direct_loss_gunungberapi_100__0': 1390293134.529738, 'direct_loss_longsor_5__1': 13725000000.0, 'direct_loss_longsor_2__1': 13725000000.0, 'direct_loss_banjir_50__1': 0.0, 'direct_loss_gempa_250__1': 13725000000.0, 'direct_loss_banjir_25__1': 0.0, 'direct_loss_gunungberapi_250__1': 1390293134.529738, 'id_bangunan__1': 'FS_7814', 'direct_loss_gunungberapi_50__1': 1390293134.529738, 'direct_loss_gempa_100__1': 13354641320.867601, 'direct_loss_banjir_100__1': 0.0, 'direct_loss_gempa_500__1': 13564277756.32236, 'direct_loss_gunungberapi_100__1': 1390293134.529738, 'direct_loss_longsor_5__2': 13725000000.0, 'direct_loss_longsor_2__2': 13725000000.0, 'direct_loss_banjir_50__2': 0.0, 'direct_loss_gempa_250__2': 13725000000.0, 'direct_loss_banjir_25__2': 0.0, 'direct_loss_gunungberapi_250__2': 1390293134.529738, 'id_bangunan__2': 'FS_7815', 'direct_loss_gunungberapi_50__2': 1390293134.529738, 'direct_loss_gempa_100__2': 13725000000.0, 'direct_loss_banjir_100__2': 0.0, 'direct_loss_gempa_500__2': 13689061069.84082, 'direct_loss_gunungberapi_100__2': 1390293134.529738, 'direct_loss_longsor_5__3': 13725000000.0, 'direct_loss_longsor_2__3': 13725000000.0, 'direct_loss_banjir_50__3': 1038934697.0935507, 'direct_loss_gempa_250__3': 13725000000.0, 'direct_loss_banjir_25__3': 0.0, 'direct_loss_gunungberapi_250__3': 1390293134.529738, 'id_bangunan__3': 'FS_7816', 'direct_loss_gunungberapi_50__3': 1390293134.529738, 'direct_loss_gempa_100__3': 13725000000.0, 'direct_loss_banjir_100__3': 0.0, 'direct_loss_gempa_500__3': 13689061069.84082, 'direct_loss_gunungberapi_100__3': 1390293134.529738, 'direct_loss_longsor_5__4': 13725000000.0, 'direct_loss_longsor_2__4': 13725000000.0 ... 11900 parameters truncated ... 'direct_loss_gempa_500__995': 113800000.0, 'direct_loss_gunungberapi_100__995': 11527530.689215604, 'direct_loss_longsor_5__996': 0.0, 'direct_loss_longsor_2__996': 0.0, 'direct_loss_banjir_50__996': 0.0, 'direct_loss_gempa_250__996': 0.0, 'direct_loss_banjir_25__996': 0.0, 'direct_loss_gunungberapi_250__996': 23916080.806008823, 'id_bangunan__996': 'BMN_83451', 'direct_loss_gunungberapi_50__996': 23916080.806008823, 'direct_loss_gempa_100__996': 0.0, 'direct_loss_banjir_100__996': 23938785.846106675, 'direct_loss_gempa_500__996': 0.0, 'direct_loss_gunungberapi_100__996': 23916080.806008823, 'direct_loss_longsor_5__997': 4194036000.0, 'direct_loss_longsor_2__997': 4194036000.0, 'direct_loss_banjir_50__997': 0.0, 'direct_loss_gempa_250__997': 4194036000.0, 'direct_loss_banjir_25__997': 0.0, 'direct_loss_gunungberapi_250__997': 424840761.87763673, 'id_bangunan__997': 'BMN_85826', 'direct_loss_gunungberapi_50__997': 424840761.87763673, 'direct_loss_gempa_100__997': 4194036000.0, 'direct_loss_banjir_100__997': 0.0, 'direct_loss_gempa_500__997': 4194036000.0, 'direct_loss_gunungberapi_100__997': 424840761.87763673, 'direct_loss_longsor_5__998': 108967416.0, 'direct_loss_longsor_2__998': 108967416.0, 'direct_loss_banjir_50__998': 0.0, 'direct_loss_gempa_250__998': 108967416.0, 'direct_loss_banjir_25__998': 0.0, 'direct_loss_gunungberapi_250__998': 11038007.311639046, 'id_bangunan__998': 'BMN_82967', 'direct_loss_gunungberapi_50__998': 11038007.311639046, 'direct_loss_gempa_100__998': 108722606.6701427, 'direct_loss_banjir_100__998': 0.0, 'direct_loss_gempa_500__998': 108967416.0, 'direct_loss_gunungberapi_100__998': 11038007.311639046, 'direct_loss_longsor_5__999': 0.0, 'direct_loss_longsor_2__999': 0.0, 'direct_loss_banjir_50__999': 0.0, 'direct_loss_gempa_250__999': 0.0, 'direct_loss_banjir_25__999': 0.0, 'direct_loss_gunungberapi_250__999': 1473376444.4708157, 'id_bangunan__999': 'BMN_70497', 'direct_loss_gunungberapi_50__999': 1473376444.4708157, 'direct_loss_gempa_100__999': 0.0, 'direct_loss_banjir_100__999': 3794627367.7146, 'direct_loss_gempa_500__999': 0.0, 'direct_loss_gunungberapi_100__999': 1473376444.4708157}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-07 08:30:57,288 DEBUG === START process_all_disasters ===
+2025-05-07 08:30:57,304 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-07 08:31:02,381 DEBUG 📥 Buildings: 284246 rows
+2025-05-07 08:31:03,101 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-07 08:33:25,715 DEBUG 📥 gempa: 284246 rows
+2025-05-07 08:33:25,745 DEBUG 📥 banjir: 284246 rows
+2025-05-07 08:33:25,773 DEBUG 📥 longsor: 284246 rows
+2025-05-07 08:33:25,800 DEBUG 📥 gunungberapi: 284246 rows
+2025-05-07 08:33:25,809 DEBUG direct_loss_gempa_500 sample: [3083128687.0440483, 3691997344.54877, 3121129445.764268]
+2025-05-07 08:33:25,818 DEBUG direct_loss_gempa_250 sample: [1314729828.9937413, 2169854666.702822, 1362958363.986853]
+2025-05-07 08:33:25,827 DEBUG direct_loss_gempa_100 sample: [401855212.1914699, 692347406.7921019, 416545950.98803115]
+2025-05-07 08:33:25,833 DEBUG direct_loss_banjir_100 sample: [82123347.06048861, 111349006.17821439, 0.0]
+2025-05-07 08:33:25,838 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-07 08:33:25,844 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-07 08:33:25,852 DEBUG direct_loss_longsor_5 sample: [2700169306.2585735, 3156323740.4227223, 2723793078.1262407]
+2025-05-07 08:33:25,861 DEBUG direct_loss_longsor_2 sample: [1749212626.1544218, 2195209979.7446575, 1775272263.0041904]
+2025-05-07 08:33:25,868 DEBUG direct_loss_gunungberapi_250 sample: [400839737.4532412, 400839737.4532412, 400839737.4532412]
+2025-05-07 08:33:25,876 DEBUG direct_loss_gunungberapi_100 sample: [400839737.4532412, 400839737.4532412, 400839737.4532412]
+2025-05-07 08:33:25,885 DEBUG direct_loss_gunungberapi_50 sample: [400839737.4532412, 400839737.4532412, 400839737.4532412]
+2025-05-07 08:33:45,514 ERROR ❌ Saving Direct Loss failed: (psycopg2.errors.ForeignKeyViolation) insert or update on table "hasil_proses_directloss" violates foreign key constraint "id_bangunan_fkey"
+DETAIL:  Key (id_bangunan)=(BMN_1746418892377) is not present in table "bangunangajadi".
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, d ... 395659 characters truncated ... (direct_loss_gunungberapi_50__999)s, %(direct_loss_longsor_5__999)s, %(direct_loss_longsor_2__999)s)]
+[parameters: {'direct_loss_longsor_5__0': 13725000000.0, 'direct_loss_longsor_2__0': 13725000000.0, 'direct_loss_banjir_50__0': 0.0, 'direct_loss_gempa_250__0': 13725000000.0, 'direct_loss_banjir_25__0': 0.0, 'direct_loss_gunungberapi_250__0': 1390293134.529738, 'id_bangunan__0': 'FS_7813', 'direct_loss_gunungberapi_50__0': 1390293134.529738, 'direct_loss_gempa_100__0': 13725000000.0, 'direct_loss_banjir_100__0': 0.0, 'direct_loss_gempa_500__0': 13663044453.594358, 'direct_loss_gunungberapi_100__0': 1390293134.529738, 'direct_loss_longsor_5__1': 13725000000.0, 'direct_loss_longsor_2__1': 13725000000.0, 'direct_loss_banjir_50__1': 0.0, 'direct_loss_gempa_250__1': 13725000000.0, 'direct_loss_banjir_25__1': 0.0, 'direct_loss_gunungberapi_250__1': 1390293134.529738, 'id_bangunan__1': 'FS_7814', 'direct_loss_gunungberapi_50__1': 1390293134.529738, 'direct_loss_gempa_100__1': 13354641320.867601, 'direct_loss_banjir_100__1': 0.0, 'direct_loss_gempa_500__1': 13564277756.32236, 'direct_loss_gunungberapi_100__1': 1390293134.529738, 'direct_loss_longsor_5__2': 13725000000.0, 'direct_loss_longsor_2__2': 13725000000.0, 'direct_loss_banjir_50__2': 0.0, 'direct_loss_gempa_250__2': 13725000000.0, 'direct_loss_banjir_25__2': 0.0, 'direct_loss_gunungberapi_250__2': 1390293134.529738, 'id_bangunan__2': 'FS_7815', 'direct_loss_gunungberapi_50__2': 1390293134.529738, 'direct_loss_gempa_100__2': 13725000000.0, 'direct_loss_banjir_100__2': 0.0, 'direct_loss_gempa_500__2': 13689061069.84082, 'direct_loss_gunungberapi_100__2': 1390293134.529738, 'direct_loss_longsor_5__3': 13725000000.0, 'direct_loss_longsor_2__3': 13725000000.0, 'direct_loss_banjir_50__3': 1038934697.0935507, 'direct_loss_gempa_250__3': 13725000000.0, 'direct_loss_banjir_25__3': 0.0, 'direct_loss_gunungberapi_250__3': 1390293134.529738, 'id_bangunan__3': 'FS_7816', 'direct_loss_gunungberapi_50__3': 1390293134.529738, 'direct_loss_gempa_100__3': 13725000000.0, 'direct_loss_banjir_100__3': 0.0, 'direct_loss_gempa_500__3': 13689061069.84082, 'direct_loss_gunungberapi_100__3': 1390293134.529738, 'direct_loss_longsor_5__4': 13725000000.0, 'direct_loss_longsor_2__4': 13725000000.0 ... 11900 parameters truncated ... 'direct_loss_gempa_500__995': 113800000.0, 'direct_loss_gunungberapi_100__995': 11527530.689215604, 'direct_loss_longsor_5__996': 0.0, 'direct_loss_longsor_2__996': 0.0, 'direct_loss_banjir_50__996': 0.0, 'direct_loss_gempa_250__996': 0.0, 'direct_loss_banjir_25__996': 0.0, 'direct_loss_gunungberapi_250__996': 23916080.806008823, 'id_bangunan__996': 'BMN_83451', 'direct_loss_gunungberapi_50__996': 23916080.806008823, 'direct_loss_gempa_100__996': 0.0, 'direct_loss_banjir_100__996': 23938785.846106675, 'direct_loss_gempa_500__996': 0.0, 'direct_loss_gunungberapi_100__996': 23916080.806008823, 'direct_loss_longsor_5__997': 4194036000.0, 'direct_loss_longsor_2__997': 4194036000.0, 'direct_loss_banjir_50__997': 0.0, 'direct_loss_gempa_250__997': 4194036000.0, 'direct_loss_banjir_25__997': 0.0, 'direct_loss_gunungberapi_250__997': 424840761.87763673, 'id_bangunan__997': 'BMN_85826', 'direct_loss_gunungberapi_50__997': 424840761.87763673, 'direct_loss_gempa_100__997': 4194036000.0, 'direct_loss_banjir_100__997': 0.0, 'direct_loss_gempa_500__997': 4194036000.0, 'direct_loss_gunungberapi_100__997': 424840761.87763673, 'direct_loss_longsor_5__998': 108967416.0, 'direct_loss_longsor_2__998': 108967416.0, 'direct_loss_banjir_50__998': 0.0, 'direct_loss_gempa_250__998': 108967416.0, 'direct_loss_banjir_25__998': 0.0, 'direct_loss_gunungberapi_250__998': 11038007.311639046, 'id_bangunan__998': 'BMN_82967', 'direct_loss_gunungberapi_50__998': 11038007.311639046, 'direct_loss_gempa_100__998': 108722606.6701427, 'direct_loss_banjir_100__998': 0.0, 'direct_loss_gempa_500__998': 108967416.0, 'direct_loss_gunungberapi_100__998': 11038007.311639046, 'direct_loss_longsor_5__999': 0.0, 'direct_loss_longsor_2__999': 0.0, 'direct_loss_banjir_50__999': 0.0, 'direct_loss_gempa_250__999': 0.0, 'direct_loss_banjir_25__999': 0.0, 'direct_loss_gunungberapi_250__999': 1473376444.4708157, 'id_bangunan__999': 'BMN_70497', 'direct_loss_gunungberapi_50__999': 1473376444.4708157, 'direct_loss_gempa_100__999': 0.0, 'direct_loss_banjir_100__999': 3794627367.7146, 'direct_loss_gempa_500__999': 0.0, 'direct_loss_gunungberapi_100__999': 1473376444.4708157}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-07 08:34:36,416 DEBUG === START process_all_disasters ===
+2025-05-07 08:34:36,419 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-07 08:34:41,201 DEBUG 📥 Buildings: 284246 rows
+2025-05-07 08:34:41,792 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-07 08:36:30,264 DEBUG 📥 gempa: 284246 rows
+2025-05-07 08:36:30,310 DEBUG 📥 banjir: 284246 rows
+2025-05-07 08:36:30,367 DEBUG 📥 longsor: 284246 rows
+2025-05-07 08:36:30,410 DEBUG 📥 gunungberapi: 284246 rows
+2025-05-07 08:36:30,424 DEBUG direct_loss_gempa_500 sample: [3083128687.0440483, 3691997344.54877, 3121129445.764268]
+2025-05-07 08:36:30,438 DEBUG direct_loss_gempa_250 sample: [1314729828.9937413, 2169854666.702822, 1362958363.986853]
+2025-05-07 08:36:30,453 DEBUG direct_loss_gempa_100 sample: [401855212.1914699, 692347406.7921019, 416545950.98803115]
+2025-05-07 08:36:30,461 DEBUG direct_loss_banjir_100 sample: [82123347.06048861, 111349006.17821439, 0.0]
+2025-05-07 08:36:30,471 DEBUG direct_loss_banjir_50 sample: [0.0, 0.0, 0.0]
+2025-05-07 08:36:30,479 DEBUG direct_loss_banjir_25 sample: [0.0, 0.0, 0.0]
+2025-05-07 08:36:30,492 DEBUG direct_loss_longsor_5 sample: [2700169306.2585735, 3156323740.4227223, 2723793078.1262407]
+2025-05-07 08:36:30,508 DEBUG direct_loss_longsor_2 sample: [1749212626.1544218, 2195209979.7446575, 1775272263.0041904]
+2025-05-07 08:36:30,525 DEBUG direct_loss_gunungberapi_250 sample: [400839737.4532412, 400839737.4532412, 400839737.4532412]
+2025-05-07 08:36:30,538 DEBUG direct_loss_gunungberapi_100 sample: [400839737.4532412, 400839737.4532412, 400839737.4532412]
+2025-05-07 08:36:30,553 DEBUG direct_loss_gunungberapi_50 sample: [400839737.4532412, 400839737.4532412, 400839737.4532412]
+2025-05-07 08:37:09,016 INFO ✅ Direct Loss saved
+2025-05-07 08:37:12,192 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-07 08:37:12,797 DEBUG grp (provinsi,kode_bangunan) shape: (114, 11)
+2025-05-07 08:37:12,803 DEBUG AAL before pivot: (114, 13)
+2025-05-07 08:37:12,814 DEBUG pivot shape: (44, 34)
+2025-05-07 08:37:12,823 DEBUG pivot with totals shape: (44, 45)
+2025-05-07 08:37:12,832 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-07 08:37:12,861 INFO ✅ AAL saved
+2025-05-07 08:37:12,866 DEBUG === END process_all_disasters ===
+2025-05-07 10:16:42,930 DEBUG === START process_all_disasters ===
+2025-05-07 10:16:43,723 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-07 10:16:46,818 DEBUG 📥 Buildings: 285331 rows
+2025-05-07 10:16:47,340 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-07 10:18:34,533 DEBUG 📥 gempa: 281486 rows
+2025-05-07 10:18:34,564 DEBUG 📥 banjir: 281486 rows
+2025-05-07 10:18:34,600 DEBUG 📥 longsor: 281486 rows
+2025-05-07 10:18:34,635 DEBUG 📥 gunungberapi: 281486 rows
+2025-05-07 10:24:08,113 DEBUG === START process_all_disasters ===
+2025-05-07 10:24:08,117 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-07 10:24:11,621 DEBUG 📥 Buildings: 285331 rows
+2025-05-07 10:24:12,332 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-07 10:26:07,667 DEBUG 📥 gempa: 285331 rows (aligned to 285331)
+2025-05-07 10:26:07,779 DEBUG 📥 banjir: 285331 rows (aligned to 285331)
+2025-05-07 10:26:07,872 DEBUG 📥 longsor: 285331 rows (aligned to 285331)
+2025-05-07 10:26:07,981 DEBUG 📥 gunungberapi: 285331 rows (aligned to 285331)
+2025-05-07 10:26:07,996 DEBUG direct_loss_gempa_500 sample: [3495723896.570788, 3758295383.1922874, 3593136000.0439544]
+2025-05-07 10:26:08,008 DEBUG direct_loss_gempa_250 sample: [3509546686.0, 2338355901.2156034, 2308876764.507857]
+2025-05-07 10:26:08,024 DEBUG direct_loss_gempa_100 sample: [3509546686.0, 787581446.4861803, 668929748.633092]
+2025-05-07 10:26:08,036 DEBUG direct_loss_banjir_100 sample: [340560245.0823484, 0.0, 0.0]
+2025-05-07 10:26:08,045 DEBUG direct_loss_banjir_50 sample: [219058613.58874545, 0.0, 0.0]
+2025-05-07 10:26:08,057 DEBUG direct_loss_banjir_25 sample: [213057437.4536059, 0.0, 0.0]
+2025-05-07 10:26:08,071 DEBUG direct_loss_longsor_5 sample: [3509546686.0, 3226798680.7758136, 3191793454.7381887]
+2025-05-07 10:26:08,086 DEBUG direct_loss_longsor_2 sample: [3509546686.0, 2283050773.3948874, 2172586693.074928]
+2025-05-07 10:26:08,099 DEBUG direct_loss_gunungberapi_250 sample: [355504456.31019264, 400839737.4532412, 364340721.3663196]
+2025-05-07 10:26:08,114 DEBUG direct_loss_gunungberapi_100 sample: [355504456.31019264, 400839737.4532412, 364340721.3663196]
+2025-05-07 10:26:08,131 DEBUG direct_loss_gunungberapi_50 sample: [355504456.31019264, 400839737.4532412, 364340721.3663196]
+2025-05-07 10:26:27,522 ERROR ❌ Saving Direct Loss failed: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "hasil_proses_directloss_pkey"
+DETAIL:  Key (id_bangunan)=(FD_13775) already exists.
+
+[SQL: INSERT INTO hasil_proses_directloss (id_bangunan, direct_loss_gempa_500, direct_loss_gempa_250, direct_loss_gempa_100, direct_loss_banjir_100, direct_loss_banjir_50, direct_loss_banjir_25, direct_loss_gunungberapi_250, direct_loss_gunungberapi_100, d ... 395659 characters truncated ... (direct_loss_gunungberapi_50__999)s, %(direct_loss_longsor_5__999)s, %(direct_loss_longsor_2__999)s)]
+[parameters: {'direct_loss_banjir_25__0': 382938116.4884964, 'id_bangunan__0': 'FD_140329', 'direct_loss_longsor_2__0': 4826046810.288836, 'direct_loss_gunungberapi_50__0': 578057720.476507, 'direct_loss_longsor_5__0': 5706596700.0, 'direct_loss_gempa_500__0': 5706596700.0, 'direct_loss_banjir_100__0': 0.0, 'direct_loss_banjir_50__0': 391637678.00215614, 'direct_loss_gunungberapi_100__0': 578057720.476507, 'direct_loss_gempa_250__0': 5557657082.386657, 'direct_loss_gempa_100__0': 4119259114.6864157, 'direct_loss_gunungberapi_250__0': 578057720.476507, 'direct_loss_banjir_25__1': 129057910.56838614, 'id_bangunan__1': 'FD_40195', 'direct_loss_longsor_2__1': 3105600000.0, 'direct_loss_gunungberapi_50__1': 314586109.91588736, 'direct_loss_longsor_5__1': 3105600000.0, 'direct_loss_gempa_500__1': 3105600000.0, 'direct_loss_banjir_100__1': 0.0, 'direct_loss_banjir_50__1': 168786391.50947797, 'direct_loss_gunungberapi_100__1': 314586109.91588736, 'direct_loss_gempa_250__1': 3105600000.0, 'direct_loss_gempa_100__1': 3083852203.3795943, 'direct_loss_gunungberapi_250__1': 314586109.91588736, 'direct_loss_banjir_25__2': 947944590.6969011, 'id_bangunan__2': 'FD_58915', 'direct_loss_longsor_2__2': 12614940000.0, 'direct_loss_gunungberapi_50__2': 1277848049.144231, 'direct_loss_longsor_5__2': 12614940000.0, 'direct_loss_gempa_500__2': 12614940000.0, 'direct_loss_banjir_100__2': 766717156.0403311, 'direct_loss_banjir_50__2': 998469497.463767, 'direct_loss_gunungberapi_100__2': 1277848049.144231, 'direct_loss_gempa_250__2': 12468016611.18795, 'direct_loss_gempa_100__2': 12614940000.0, 'direct_loss_gunungberapi_250__2': 1277848049.144231, 'direct_loss_banjir_25__3': 0.0, 'id_bangunan__3': 'FD_63733', 'direct_loss_longsor_2__3': 0.0, 'direct_loss_gunungberapi_50__3': 574909762.541801, 'direct_loss_longsor_5__3': 0.0, 'direct_loss_gempa_500__3': 0.0, 'direct_loss_banjir_100__3': 0.0, 'direct_loss_banjir_50__3': 0.0, 'direct_loss_gunungberapi_100__3': 574909762.541801, 'direct_loss_gempa_250__3': 0.0, 'direct_loss_gempa_100__3': 0.0, 'direct_loss_gunungberapi_250__3': 574909762.541801, 'direct_loss_banjir_25__4': 452400836.428284, 'id_bangunan__4': 'FD_59003' ... 11900 parameters truncated ... 'direct_loss_gempa_100__995': 1330044223.1271477, 'direct_loss_gunungberapi_250__995': 387116360.5669608, 'direct_loss_banjir_25__996': 472209455.093026, 'id_bangunan__996': 'FD_24856', 'direct_loss_longsor_2__996': 934262961.6728383, 'direct_loss_gunungberapi_50__996': 402408065.60073924, 'direct_loss_longsor_5__996': 1909020339.0965786, 'direct_loss_gempa_500__996': 1607891532.145719, 'direct_loss_banjir_100__996': 213117217.3870436, 'direct_loss_banjir_50__996': 0.0, 'direct_loss_gunungberapi_100__996': 402408065.60073924, 'direct_loss_gempa_250__996': 395323389.7085066, 'direct_loss_gempa_100__996': 0.0, 'direct_loss_gunungberapi_250__996': 402408065.60073924, 'direct_loss_banjir_25__997': 0.0, 'id_bangunan__997': 'FD_24856', 'direct_loss_longsor_2__997': 760800457.3883048, 'direct_loss_gunungberapi_50__997': 327693864.495716, 'direct_loss_longsor_5__997': 1554576823.3685493, 'direct_loss_gempa_500__997': 1309357925.2000968, 'direct_loss_banjir_100__997': 70628194.19891769, 'direct_loss_banjir_50__997': 0.0, 'direct_loss_gunungberapi_100__997': 327693864.495716, 'direct_loss_gempa_250__997': 321924584.45318127, 'direct_loss_gempa_100__997': 0.0, 'direct_loss_gunungberapi_250__997': 327693864.495716, 'direct_loss_banjir_25__998': 0.0, 'id_bangunan__998': 'FD_140395', 'direct_loss_longsor_2__998': 3745450061.677359, 'direct_loss_gunungberapi_50__998': 578057720.476507, 'direct_loss_longsor_5__998': 5090475006.49078, 'direct_loss_gempa_500__998': 5706596700.0, 'direct_loss_banjir_100__998': 0.0, 'direct_loss_banjir_50__998': 0.0, 'direct_loss_gunungberapi_100__998': 578057720.476507, 'direct_loss_gempa_250__998': 4198254111.5594263, 'direct_loss_gempa_100__998': 1986075531.986813, 'direct_loss_gunungberapi_250__998': 578057720.476507, 'direct_loss_banjir_25__999': 0.0, 'id_bangunan__999': 'FD_38891', 'direct_loss_longsor_2__999': 2508270273.3675623, 'direct_loss_gunungberapi_50__999': 387116360.5669608, 'direct_loss_longsor_5__999': 3409012782.4006376, 'direct_loss_gempa_500__999': 3821620000.0, 'direct_loss_banjir_100__999': 0.0, 'direct_loss_banjir_50__999': 0.0, 'direct_loss_gunungberapi_100__999': 387116360.5669608, 'direct_loss_gempa_250__999': 2811506178.0724287, 'direct_loss_gempa_100__999': 1330044223.1271477, 'direct_loss_gunungberapi_250__999': 387116360.5669608}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-07 10:30:31,099 DEBUG === START process_all_disasters ===
+2025-05-07 10:30:31,106 DEBUG ✅ Cleared DirectLoss & AAL
+2025-05-07 10:30:34,779 DEBUG 📥 Buildings: 285331 rows
+2025-05-07 10:30:35,711 DEBUG 🔧 Derived kode_bangunan from id_bangunan
+2025-05-07 10:32:25,136 DEBUG 📥 gempa: 285331 rows (aligned to 285331)
+2025-05-07 10:32:25,312 DEBUG 📥 banjir: 285331 rows (aligned to 285331)
+2025-05-07 10:32:25,455 DEBUG 📥 longsor: 285331 rows (aligned to 285331)
+2025-05-07 10:32:25,613 DEBUG 📥 gunungberapi: 285331 rows (aligned to 285331)
+2025-05-07 10:32:25,649 DEBUG direct_loss_gempa_500 sample: [3495723896.570788, 3758295383.1922874, 3593136000.0439544]
+2025-05-07 10:32:25,670 DEBUG direct_loss_gempa_250 sample: [3509546686.0, 2338355901.2156034, 2308876764.507857]
+2025-05-07 10:32:25,707 DEBUG direct_loss_gempa_100 sample: [3509546686.0, 787581446.4861803, 668929748.633092]
+2025-05-07 10:32:25,723 DEBUG direct_loss_banjir_100 sample: [340560245.0823484, 0.0, 0.0]
+2025-05-07 10:32:25,743 DEBUG direct_loss_banjir_50 sample: [219058613.58874545, 0.0, 0.0]
+2025-05-07 10:32:25,764 DEBUG direct_loss_banjir_25 sample: [213057437.4536059, 0.0, 0.0]
+2025-05-07 10:32:25,796 DEBUG direct_loss_longsor_5 sample: [3509546686.0, 3226798680.7758136, 3191793454.7381887]
+2025-05-07 10:32:25,825 DEBUG direct_loss_longsor_2 sample: [3509546686.0, 2283050773.3948874, 2172586693.074928]
+2025-05-07 10:32:25,855 DEBUG direct_loss_gunungberapi_250 sample: [355504456.31019264, 400839737.4532412, 364340721.3663196]
+2025-05-07 10:32:25,887 DEBUG direct_loss_gunungberapi_100 sample: [355504456.31019264, 400839737.4532412, 364340721.3663196]
+2025-05-07 10:32:25,921 DEBUG direct_loss_gunungberapi_50 sample: [355504456.31019264, 400839737.4532412, 364340721.3663196]
+2025-05-07 10:33:04,877 INFO ✅ Direct Loss saved
+2025-05-07 10:33:08,715 DEBUG 📄 CSV DirectLoss subset for AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\directloss_all.csv
+2025-05-07 10:33:09,661 DEBUG grp (provinsi,kode_bangunan) shape: (113, 11)
+2025-05-07 10:33:09,673 DEBUG AAL before pivot: (113, 13)
+2025-05-07 10:33:09,696 DEBUG pivot shape: (38, 34)
+2025-05-07 10:33:09,736 DEBUG pivot with totals shape: (38, 45)
+2025-05-07 10:33:09,757 DEBUG 📄 CSV AAL: E:\Geodesi dan Geomatika\Semester 7\TA\CobaPython\debug_output\AAL_per_provinsi_filtered.csv
+2025-05-07 10:33:09,805 INFO ✅ AAL saved
+2025-05-07 10:33:09,812 DEBUG === END process_all_disasters ===

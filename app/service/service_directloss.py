@@ -59,11 +59,13 @@ def process_all_disasters():
     luas  = bld['luas'].to_numpy()
     hsbgn = bld['hsbgn'].to_numpy()
 
-    # 2) Hazard data
+    # 2) Hazard data (reindexed to bld.index!)
     disaster_data = get_all_disaster_data()
     for name, df in disaster_data.items():
-        disaster_data[name] = df.fillna(0)
-        logger.debug(f"📥 {name}: {len(df)} rows")
+        # fill na, then reindex so length==len(bld)
+        df = df.fillna(0).reindex(bld.index).fillna(0)
+        disaster_data[name] = df
+        logger.debug(f"📥 {name}: {len(df)} rows (aligned to {len(bld)})")
 
     # 3) Direct loss calc
     prefix_map = {"gempa":"mmi","banjir":"depth","longsor":"mflux","gunungberapi":"kpa"}
@@ -103,6 +105,9 @@ def process_all_disasters():
 
     # 4) Save Direct Loss
     dl_cols = [c for c in bld.columns if c.startswith("direct_loss_")]
+
+    bld = bld.drop_duplicates(subset='id_bangunan', keep='last')    
+
     mappings = [
         {"id_bangunan": row['id_bangunan'], **{c: row[c] for c in dl_cols}}
         for _, row in bld.iterrows()
@@ -125,7 +130,6 @@ def process_all_disasters():
     calculate_aal()
     logger.debug("=== END process_all_disasters ===")
     return csv_path
-
 
 def calculate_aal():
     path = os.path.join(DEBUG_DIR, "directloss_all.csv")
