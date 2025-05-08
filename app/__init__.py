@@ -21,6 +21,10 @@ from app.repository.repo_kurva_gunungberapi import get_reference_curves_gunungbe
 from app.repository.repo_kurva_longsor import get_reference_curves_longsor as load_longsor
 from app.repository.repo_kurva_banjir import get_reference_curves_banjir as load_banjir
 
+#visualisasi kurva
+from app.route.route_visualisasi_kurva import disaster_curve_bp
+
+
 # Logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -51,6 +55,7 @@ def create_app():
     app.register_blueprint(main_bp)
     app.register_blueprint(bangunan_bp)
     app.register_blueprint(hsbgn_bp)
+    app.register_blueprint(disaster_curve_bp)
     logger.info("✅ CRUD & raw-data blueprints registered")
 
     # register visualization routes (/api/gedung, /api/provinsi, /api/kota)
